@@ -1,12 +1,12 @@
 {
   "phase": "done",
-  "message": "Re-indexed src/lib/undo-redo.ts → 1 blocks",
-  "current": 214,
-  "total": 214,
+  "message": "Re-indexed src/lib/__tests__/token-compiler.test.ts → 2 blocks",
+  "current": 252,
+  "total": 252,
   "percentage": 100,
-  "updatedAt": "2026-06-30T01:52:46.438Z",
+  "updatedAt": "2026-06-30T02:07:48.786Z",
   "files": 2,
-  "blocks": 214,
+  "blocks": 252,
   "dbPath": "/Users/jdbernardo/Sites/bloxx/.codebase-index-store",
-  "lastIndexed": "2026-06-30T01:52:46.438Z"
+  "lastIndexed": "2026-06-30T02:07:48.786Z"
 }
