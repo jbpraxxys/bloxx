@@ -27,14 +27,31 @@ const App: React.FC = () => {
     }
   }, [project, currentPageId, setCurrentPage])
 
+  // Session recovery: auto-load last project
+  useEffect(() => {
+    if (projects.length > 0) {
+      const lastProjectId = localStorage.getItem('bloxx-last-project')
+      if (lastProjectId) {
+        const exists = projects.find((p) => p.id === lastProjectId)
+        if (exists) {
+          loadProject(lastProjectId)
+        }
+      }
+    }
+  }, [projects, loadProject])
+
   const handleCreateProject = async () => {
     if (!projectName.trim()) return
-    await createProject(projectName.trim())
+    const project = await createProject(projectName.trim())
+    if (project) {
+      localStorage.setItem('bloxx-last-project', project.id)
+    }
     setProjectName('')
     setShowProjectDialog(false)
   }
 
   const handleSelectProject = (id: string) => {
+    localStorage.setItem('bloxx-last-project', id)
     loadProject(id)
   }
 

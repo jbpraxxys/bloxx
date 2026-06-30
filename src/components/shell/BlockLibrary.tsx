@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react'
+import React, { useMemo, memo, useState } from 'react'
 import { curatedBlocks } from '../../blocks'
 import type { BlockDefinition } from '../../types'
 import { useCanvasStore } from '../../store/canvasStore'
@@ -17,7 +17,7 @@ const CATEGORY_LABELS: Record<string, string> = {
   footer: 'Footer',
 }
 
-export const BlockLibrary: React.FC = () => {
+const _BlockLibrary: React.FC = () => {
   const { editorMode } = useCanvasStore()
 
   const grouped = useMemo(() => {
@@ -93,3 +93,5 @@ export const BlockLibrary: React.FC = () => {
     </div>
   )
 }
+
+export const BlockLibrary = memo(_BlockLibrary)

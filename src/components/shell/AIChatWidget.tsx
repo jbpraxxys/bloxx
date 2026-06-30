@@ -1,11 +1,11 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect, memo } from 'react'
 import { useAIStore } from '../../store/aiStore'
 import { useCanvasStore } from '../../store/canvasStore'
 import { useProjectStore } from '../../store/projectStore'
 import { buildContext } from '../../lib/context-builder'
 import { executeActions } from '../../lib/response-parser'
 
-export const AIChatWidget: React.FC = () => {
+const _AIChatWidget: React.FC = () => {
   const {
     messages, isProcessing, promptMode, isConfigured, apiKey,
     providerType, providerModel, setProvider, clearApiKey,
@@ -219,3 +219,5 @@ export const AIChatWidget: React.FC = () => {
     </div>
   )
 }
+
+export const AIChatWidget = memo(_AIChatWidget)

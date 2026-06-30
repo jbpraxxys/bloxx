@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, memo } from 'react'
 import { useDesignTokensStore } from '../../store/designTokensStore'
 import { useCanvasStore } from '../../store/canvasStore'
 
@@ -20,7 +20,7 @@ const CATEGORY_ICONS: Record<TokenCategory, string> = {
   shadows: '🌓',
 }
 
-export const DesignSystemPanel: React.FC = () => {
+const _DesignSystemPanel: React.FC = () => {
   const { tokens, isDirty, loadTokens, updateToken, applyTokens, resetTokens } = useDesignTokensStore()
   const { editorMode } = useCanvasStore()
   const [activeCategory, setActiveCategory] = useState<TokenCategory>('colors')
@@ -147,3 +147,5 @@ export const DesignSystemPanel: React.FC = () => {
     </div>
   )
 }
+
+export const DesignSystemPanel = memo(_DesignSystemPanel)

@@ -1,12 +1,12 @@
 {
   "phase": "done",
-  "message": "Re-indexed src/App.tsx → 2 blocks",
-  "current": 656,
-  "total": 656,
+  "message": "Re-indexed src/components/shell/AIChatWidget.tsx → 2 blocks",
+  "current": 659,
+  "total": 659,
   "percentage": 100,
-  "updatedAt": "2026-06-30T04:14:04.176Z",
+  "updatedAt": "2026-06-30T04:16:57.381Z",
   "files": 2,
-  "blocks": 656,
+  "blocks": 659,
   "dbPath": "/Users/jdbernardo/Sites/bloxx/.codebase-index-store",
-  "lastIndexed": "2026-06-30T04:14:04.176Z"
+  "lastIndexed": "2026-06-30T04:16:57.381Z"
 }

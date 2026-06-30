@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useCallback } from 'react'
+import React, { useRef, useEffect, useCallback, memo } from 'react'
 import { useProjectStore } from '../../store/projectStore'
 import { useCanvasStore } from '../../store/canvasStore'
 import { useDesignTokensStore } from '../../store/designTokensStore'
@@ -8,7 +8,7 @@ import type { CanvasToShellMessage } from '../../types'
 
 const CANVAS_IFRAME_SRC = '/src/canvas/index.html'
 
-export const CanvasContainer: React.FC = () => {
+const _CanvasContainer: React.FC = () => {
   const iframeRef = useRef<HTMLIFrameElement>(null)
   const { project } = useProjectStore()
   const { viewport, editorMode, selectedBlockIndex, selectElement, clearSelection, currentPageId } = useCanvasStore()
@@ -249,3 +249,5 @@ export const CanvasContainer: React.FC = () => {
     </div>
   )
 }
+
+export const CanvasContainer = memo(_CanvasContainer)
