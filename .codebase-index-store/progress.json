@@ -1,12 +1,12 @@
 {
   "phase": "done",
-  "message": "Re-indexed src/components/canvas/CanvasContainer.tsx → 6 blocks",
-  "current": 207,
-  "total": 207,
+  "message": "Re-indexed src/lib/undo-redo.ts → 1 blocks",
+  "current": 214,
+  "total": 214,
   "percentage": 100,
-  "updatedAt": "2026-06-30T01:42:08.340Z",
+  "updatedAt": "2026-06-30T01:52:46.438Z",
   "files": 2,
-  "blocks": 207,
+  "blocks": 214,
   "dbPath": "/Users/jdbernardo/Sites/bloxx/.codebase-index-store",
-  "lastIndexed": "2026-06-30T01:42:08.339Z"
+  "lastIndexed": "2026-06-30T01:52:46.438Z"
 }

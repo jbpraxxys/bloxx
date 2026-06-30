@@ -1,6 +1,7 @@
 import { create } from 'zustand'
-import type { BloxxProject, BloxxPage, BlockInstance, StyleOverride } from '../types'
+import type { UndoAction, BloxxProject, BloxxPage, BlockInstance, StyleOverride } from '../types'
 import { projectService } from '../data/projectService'
+import { undoRedo } from '../lib/undo-redo'
 
 interface ProjectState {
   project: BloxxProject | null
@@ -80,7 +81,7 @@ export const useProjectStore = create<ProjectState>((set, get) => ({
   },
 
   addBlock: (pageId: string, blockId: string, variantId: string) => {
-    const { project, saveProject } = get()
+    const { project } = get()
     if (!project) return
     const page = project.pages.find((p) => p.id === pageId)
     if (!page) return
@@ -91,27 +92,101 @@ export const useProjectStore = create<ProjectState>((set, get) => ({
       content: {},
       overrides: [],
     }
-    page.blocks.push(newBlock)
-    saveProject()
+
+    let removeInverseAction: UndoAction
+    const addAction: UndoAction = {
+      type: 'ADD_BLOCK',
+      payload: { pageId, blockId, variantId, instanceId: newBlock.id },
+      execute: () => {
+        const p = get().project?.pages.find((pg) => pg.id === pageId)
+        if (!p) return
+        p.blocks.push(newBlock)
+        get().saveProject()
+      },
+      inverse: () => removeInverseAction,
+    }
+    removeInverseAction = {
+      type: 'REMOVE_BLOCK',
+      payload: { pageId, instanceId: newBlock.id },
+      execute: () => {
+        const p = get().project?.pages.find((pg) => pg.id === pageId)
+        if (!p) return
+        p.blocks = p.blocks.filter((b) => b.id !== newBlock.id)
+        get().saveProject()
+      },
+      inverse: () => addAction,
+    }
+
+    undoRedo.execute(addAction)
   },
 
   removeBlock: (pageId: string, blockInstanceId: string) => {
-    const { project, saveProject } = get()
+    const { project } = get()
     if (!project) return
     const page = project.pages.find((p) => p.id === pageId)
     if (!page) return
-    page.blocks = page.blocks.filter((b) => b.id !== blockInstanceId)
-    saveProject()
+    const removedIndex = page.blocks.findIndex((b) => b.id === blockInstanceId)
+    const removedBlock = page.blocks.find((b) => b.id === blockInstanceId)
+    if (!removedBlock) return
+
+    let addBlockAtAction: UndoAction
+    const removeAction: UndoAction = {
+      type: 'REMOVE_BLOCK',
+      payload: { pageId, blockInstanceId, removedIndex, removedBlock },
+      execute: () => {
+        const p = get().project?.pages.find((pg) => pg.id === pageId)
+        if (!p) return
+        p.blocks = p.blocks.filter((b) => b.id !== blockInstanceId)
+        get().saveProject()
+      },
+      inverse: () => addBlockAtAction,
+    }
+    addBlockAtAction = {
+      type: 'ADD_BLOCK_AT',
+      payload: { pageId, block: removedBlock, index: removedIndex },
+      execute: () => {
+        const p = get().project?.pages.find((pg) => pg.id === pageId)
+        if (!p) return
+        p.blocks.splice(removedIndex, 0, removedBlock)
+        get().saveProject()
+      },
+      inverse: () => removeAction,
+    }
+
+    undoRedo.execute(removeAction)
   },
 
   moveBlock: (pageId: string, fromIndex: number, toIndex: number) => {
-    const { project, saveProject } = get()
+    const { project } = get()
     if (!project) return
-    const page = project.pages.find((p) => p.id === pageId)
-    if (!page) return
-    const [block] = page.blocks.splice(fromIndex, 1)
-    page.blocks.splice(toIndex, 0, block)
-    saveProject()
+
+    let reverseMoveAction: UndoAction
+    const moveAction: UndoAction = {
+      type: 'MOVE_BLOCK',
+      payload: { pageId, fromIndex, toIndex },
+      execute: () => {
+        const p = get().project?.pages.find((pg) => pg.id === pageId)
+        if (!p) return
+        const [block] = p.blocks.splice(fromIndex, 1)
+        p.blocks.splice(toIndex, 0, block)
+        get().saveProject()
+      },
+      inverse: () => reverseMoveAction,
+    }
+    reverseMoveAction = {
+      type: 'MOVE_BLOCK',
+      payload: { pageId, fromIndex: toIndex, toIndex: fromIndex },
+      execute: () => {
+        const p = get().project?.pages.find((pg) => pg.id === pageId)
+        if (!p) return
+        const [block] = p.blocks.splice(toIndex, 1)
+        p.blocks.splice(fromIndex, 0, block)
+        get().saveProject()
+      },
+      inverse: () => moveAction,
+    }
+
+    undoRedo.execute(moveAction)
   },
 
   updateBlockContent: (pageId: string, blockInstanceId: string, content: Record<string, any>) => {

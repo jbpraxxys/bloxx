@@ -1,6 +1,7 @@
 import React from 'react'
 import { useCanvasStore } from '../../store/canvasStore'
 import { useProjectStore } from '../../store/projectStore'
+import { undoRedo } from '../../lib/undo-redo'
 import { VIEWPORT_CONFIG, type ViewportDevice } from '../../types'
 
 export const Toolbar: React.FC = () => {
@@ -51,8 +52,22 @@ export const Toolbar: React.FC = () => {
 
           <div className="bloxx-toolbar__separator" />
 
-          <button className="bloxx-toolbar__btn" title="Undo (Ctrl+Z)">↩ Undo</button>
-          <button className="bloxx-toolbar__btn" title="Redo (Ctrl+Shift+Z)">↪ Redo</button>
+          <button
+            className="bloxx-toolbar__btn"
+            onClick={() => undoRedo.undo()}
+            disabled={!undoRedo.canUndo}
+            title="Undo (Ctrl+Z)"
+          >
+            ↩ Undo
+          </button>
+          <button
+            className="bloxx-toolbar__btn"
+            onClick={() => undoRedo.redo()}
+            disabled={!undoRedo.canRedo}
+            title="Redo (Ctrl+Shift+Z)"
+          >
+            ↪ Redo
+          </button>
 
           <div style={{ flex: 1 }} />
 
