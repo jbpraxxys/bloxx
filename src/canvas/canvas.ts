@@ -18,21 +18,12 @@ function renderBlocks(html: string, blockCount: number) {
     // Attach direct click handlers to each block (bypasses bubbling issues)
     canvasEl.querySelectorAll('.bloxx-block').forEach((blockEl) => {
       const el = blockEl as HTMLElement
-      // Remove any existing listener to avoid duplicates
-      el.onclick = null
-      el.onclick = (e) => {
-        // Don't trigger if clicking toolbar buttons
-        if ((e.target as HTMLElement).closest('.bloxx-block__toolbar')) return
-        
+      const catcher = el.querySelector('.bloxx-block__click-catcher') as HTMLElement | null
+      if (!catcher) return
+      
+      catcher.onclick = (e) => {
+        e.stopPropagation()
         const index = parseInt(el.dataset.blockIndex ?? '-1', 10)
-        const target = e.target as HTMLElement
-        const tag = target.tagName.toLowerCase()
-        let role = 'section'
-        if (['h1','h2','h3','h4','h5','h6'].includes(tag)) role = 'heading'
-        else if (tag === 'p' || tag === 'span') role = 'text'
-        else if (tag === 'button') role = 'button'
-        else if (tag === 'img') role = 'image'
-        else if (['input','textarea','select'].includes(tag)) role = 'input'
         
         // Update visual selection
         canvasEl.querySelectorAll('.bloxx-block--selected').forEach((b) => b.classList.remove('bloxx-block--selected'))
@@ -41,7 +32,7 @@ function renderBlocks(html: string, blockCount: number) {
         window.parent.postMessage({
           type: 'ELEMENT_SELECTED',
           blockIndex: index,
-          elementRole: role,
+          elementRole: 'section',
           boundingRect: el.getBoundingClientRect(),
         }, '*')
       }
@@ -87,6 +78,7 @@ function buildPageHtml(page: any, blockDefs: Record<string, any>): string {
           </div>
         </div>
         ${html}
+        <div class="bloxx-block__click-catcher" data-block-index="${index}"></div>
         ${instance.position ? '<div class="bloxx-block__resize-handle"></div>' : ''}
       </div>`
     })
