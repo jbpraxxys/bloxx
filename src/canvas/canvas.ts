@@ -3,8 +3,19 @@ import type { ShellToCanvasMessage, BoundingRect } from '../types'
 const canvasEl = document.getElementById('bloxx-canvas')!
 
 // ─── Render ──────────────────────────────────────────────
-function renderBlocks(html: string) {
-  canvasEl.innerHTML = html
+function renderBlocks(html: string, blockCount: number) {
+  if (blockCount === 0) {
+    canvasEl.innerHTML = `
+      <div class="bloxx-empty-state">
+        <div class="bloxx-empty-state__icon">🧱</div>
+        <div class="bloxx-empty-state__title">Your page is empty</div>
+        <div class="bloxx-empty-state__desc">
+          Drag blocks from the Block Library on the left, or click a block to add it to the page.
+        </div>
+      </div>`
+  } else {
+    canvasEl.innerHTML = html
+  }
 }
 
 function buildPageHtml(page: any, blockDefs: Record<string, any>): string {
@@ -55,7 +66,7 @@ window.addEventListener('message', (event: MessageEvent<ShellToCanvasMessage>) =
           blockDefs[block.id] = block
         }
         const pageHtml = buildPageHtml(msg.page, blockDefs)
-        renderBlocks(pageHtml)
+        renderBlocks(pageHtml, msg.page.blocks.length)
 
         // Set canvas positioning for freeform mode
         canvasEl.style.position = 'relative'

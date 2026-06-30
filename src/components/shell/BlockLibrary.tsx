@@ -29,11 +29,19 @@ const _BlockLibrary: React.FC = () => {
   }, [])
 
   const [showEditor, setShowEditor] = useState(false)
-  const { project } = useProjectStore()
+  const { project, addBlock, deleteCustomBlock } = useProjectStore()
 
   const handleDragStart = (e: React.DragEvent, block: BlockDefinition) => {
     e.dataTransfer.setData('text/plain', JSON.stringify({ blockId: block.id, variantId: block.defaultVariant }))
     e.dataTransfer.effectAllowed = 'copy'
+  }
+
+  const handleClickBlock = (block: BlockDefinition) => {
+    if (!project) return
+    const pageId = project.pages[0]?.id
+    if (pageId) {
+      addBlock(pageId, block.id, block.defaultVariant)
+    }
   }
 
   if (editorMode !== 'edit') return null
@@ -64,6 +72,7 @@ const _BlockLibrary: React.FC = () => {
                   className="bloxx-library__block"
                   draggable
                   onDragStart={(e) => handleDragStart(e, block)}
+                  onClick={() => handleClickBlock(block)}
                 >
                   <div className="bloxx-library__block-name">{block.name}</div>
                   <div className="bloxx-library__block-desc">{block.description}</div>
@@ -81,9 +90,20 @@ const _BlockLibrary: React.FC = () => {
                   className="bloxx-library__block"
                   draggable
                   onDragStart={(e) => handleDragStart(e, block)}
+                  style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
                 >
-                  <div className="bloxx-library__block-name">{block.name}</div>
-                  <div className="bloxx-library__block-desc">{block.description || 'Custom block'}</div>
+                  <div style={{ flex: 1 }}>
+                    <div className="bloxx-library__block-name">{block.name}</div>
+                    <div className="bloxx-library__block-desc">{block.description || 'Custom block'}</div>
+                  </div>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      deleteCustomBlock(block.id)
+                    }}
+                    style={{ border: 'none', background: 'transparent', cursor: 'pointer', color: '#EF4444', fontSize: '0.8rem', padding: '2px 6px' }}
+                    title="Delete custom block"
+                  >✕</button>
                 </div>
               ))}
             </div>

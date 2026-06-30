@@ -1,8 +1,22 @@
 import React from 'react'
 import { useCanvasStore } from '../../store/canvasStore'
+import { useProjectStore } from '../../store/projectStore'
 
 export const FloatingWidget: React.FC = () => {
-  const { selectedBlockIndex, selectedElementRole, editorMode } = useCanvasStore()
+  const { selectedBlockIndex, selectedElementRole, editorMode, clearSelection } = useCanvasStore()
+  const { project, removeBlock } = useProjectStore()
+
+  if (editorMode !== 'edit' || selectedBlockIndex === null) return null
+
+  const handleRemove = () => {
+    if (!project) return
+    const page = project.pages[0]
+    const block = page?.blocks[selectedBlockIndex]
+    if (page && block) {
+      removeBlock(page.id, block.id)
+      clearSelection()
+    }
+  }
 
   if (editorMode !== 'edit' || selectedBlockIndex === null) return null
 
@@ -89,8 +103,16 @@ export const FloatingWidget: React.FC = () => {
         )}
       </div>
 
-      <div style={{ padding: '8px 14px', borderTop: '1px solid #e0e0e0', fontSize: '0.75rem', color: '#999', textAlign: 'center' }}>
-        Edit with AI Chat below ↓
+      <div style={{ padding: '8px 14px', borderTop: '1px solid #e0e0e0', display: 'flex', gap: 8 }}>
+        <div style={{ flex: 1, fontSize: '0.75rem', color: '#999' }}>
+          Edit with AI Chat ↓
+        </div>
+        <button
+          onClick={handleRemove}
+          style={{ border: 'none', background: 'transparent', cursor: 'pointer', color: '#EF4444', fontSize: '0.75rem', fontWeight: 600 }}
+        >
+          🗑 Remove
+        </button>
       </div>
     </div>
   )

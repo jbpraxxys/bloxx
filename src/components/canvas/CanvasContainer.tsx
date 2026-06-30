@@ -39,6 +39,14 @@ const _CanvasContainer: React.FC = () => {
       if (!msg || !msg.type) return
 
       switch (msg.type) {
+        case 'RENDERED': {
+          // Canvas iframe is ready — send initial render if needed
+          if (project && activePage) {
+            setTimeout(sendRender, 0)
+          }
+          break
+        }
+
         case 'ELEMENT_SELECTED': {
           if (msg.blockIndex >= 0) {
             selectElement(msg.blockIndex, msg.elementRole)

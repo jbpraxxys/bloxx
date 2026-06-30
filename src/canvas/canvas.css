@@ -66,3 +66,31 @@ a { color: inherit; text-decoration: none; }
   border-radius: 2px;
   z-index: 10;
 }
+
+/* ─── Empty State ──────────────────────────────────────────── */
+.bloxx-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  color: #999;
+  text-align: center;
+  padding: 48px 24px;
+}
+.bloxx-empty-state__icon {
+  font-size: 3rem;
+  margin-bottom: 16px;
+}
+.bloxx-empty-state__title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #666;
+  margin-bottom: 8px;
+}
+.bloxx-empty-state__desc {
+  font-size: 0.9rem;
+  color: #999;
+  line-height: 1.5;
+  max-width: 400px;
+}
