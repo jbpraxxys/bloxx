@@ -1,12 +1,12 @@
 {
   "phase": "done",
-  "message": "Re-indexed src/canvas/canvas.ts → 10 blocks",
-  "current": 682,
-  "total": 682,
+  "message": "Re-indexed src/canvas/canvas.ts → 9 blocks",
+  "current": 677,
+  "total": 677,
   "percentage": 100,
-  "updatedAt": "2026-06-30T05:44:41.374Z",
+  "updatedAt": "2026-06-30T05:49:13.566Z",
   "files": 2,
-  "blocks": 682,
+  "blocks": 677,
   "dbPath": "/Users/jdbernardo/Sites/bloxx/.codebase-index-store",
-  "lastIndexed": "2026-06-30T05:44:41.374Z"
+  "lastIndexed": "2026-06-30T05:49:13.566Z"
 }

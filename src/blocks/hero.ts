@@ -22,8 +22,8 @@ export const heroBlocks: BlockDefinition[] = [
           <h1 style="font-size:clamp(2rem,5vw,3.5rem);font-weight:700;line-height:1.1;margin-bottom:16px;" data-bloxx-slot="headline">{{headline}}</h1>
           <p style="font-size:1.125rem;color:#666;max-width:600px;margin:0 auto 32px;" data-bloxx-slot="subtitle">{{subtitle}}</p>
           <div style="display:flex;gap:16px;justify-content:center;">
-            <a href="#" style="background:#2563EB;color:#fff;padding:12px 28px;border-radius:8px;font-weight:600;">{{cta_text}}</a>
-            <a href="#" style="padding:12px 28px;border-radius:8px;border:1px solid #ddd;">{{secondary_text}}</a>
+            <span style="background:#2563EB;color:#fff;padding:12px 28px;border-radius:8px;font-weight:600;">{{cta_text}}</span>
+            <span style="padding:12px 28px;border-radius:8px;border:1px solid #ddd;">{{secondary_text}}</span>
           </div>
         </section>`,
       },
@@ -35,8 +35,8 @@ export const heroBlocks: BlockDefinition[] = [
             <h1 style="font-size:clamp(2rem,4vw,3rem);font-weight:700;line-height:1.1;margin-bottom:16px;" data-bloxx-slot="headline">{{headline}}</h1>
             <p style="font-size:1.125rem;color:#666;margin-bottom:32px;" data-bloxx-slot="subtitle">{{subtitle}}</p>
             <div style="display:flex;gap:16px;">
-              <a href="#" style="background:#2563EB;color:#fff;padding:12px 28px;border-radius:8px;font-weight:600;">{{cta_text}}</a>
-              <a href="#" style="padding:12px 28px;border-radius:8px;border:1px solid #ddd;">{{secondary_text}}</a>
+              <span style="background:#2563EB;color:#fff;padding:12px 28px;border-radius:8px;font-weight:600;">{{cta_text}}</span>
+              <span style="padding:12px 28px;border-radius:8px;border:1px solid #ddd;">{{secondary_text}}</span>
             </div>
           </div>
           <div style="flex:1;background:#f0f0f0;border-radius:12px;height:400px;display:flex;align-items:center;justify-content:center;color:#999;">Image placeholder</div>
@@ -50,7 +50,7 @@ export const heroBlocks: BlockDefinition[] = [
             <div style="max-width:480px;">
               <h1 style="font-size:clamp(2rem,4vw,3rem);font-weight:700;line-height:1.1;margin-bottom:16px;" data-bloxx-slot="headline">{{headline}}</h1>
               <p style="font-size:1.125rem;opacity:0.9;margin-bottom:32px;" data-bloxx-slot="subtitle">{{subtitle}}</p>
-              <a href="#" style="background:#fff;color:#2563EB;padding:12px 28px;border-radius:8px;font-weight:600;display:inline-block;">{{cta_text}}</a>
+              <span style="background:#fff;color:#2563EB;padding:12px 28px;border-radius:8px;font-weight:600;display:inline-block;">{{cta_text}}</span>
             </div>
           </div>
           <div style="flex:1;background:#f0f0f0;display:flex;align-items:center;justify-content:center;">Image</div>
@@ -81,8 +81,8 @@ export const heroBlocks: BlockDefinition[] = [
             <h1 style="font-size:clamp(2rem,4vw,3rem);font-weight:700;line-height:1.1;margin-bottom:16px;" data-bloxx-slot="headline">{{headline}}</h1>
             <p style="font-size:1.125rem;opacity:0.9;margin-bottom:32px;max-width:480px;" data-bloxx-slot="subtitle">{{subtitle}}</p>
             <div style="display:flex;gap:16px;">
-              <a href="#" style="background:#fff;color:#764ba2;padding:12px 28px;border-radius:8px;font-weight:600;">{{cta_text}}</a>
-              <a href="#" style="padding:12px 28px;border-radius:8px;border:1px solid rgba(255,255,255,0.4);color:#fff;">{{secondary_text}}</a>
+              <span style="background:#fff;color:#764ba2;padding:12px 28px;border-radius:8px;font-weight:600;">{{cta_text}}</span>
+              <span style="padding:12px 28px;border-radius:8px;border:1px solid rgba(255,255,255,0.4);color:#fff;">{{secondary_text}}</span>
             </div>
           </div>
           <div style="flex:1;background:rgba(255,255,255,0.1);border-radius:12px;height:350px;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px);">Hero visual</div>
@@ -96,8 +96,8 @@ export const heroBlocks: BlockDefinition[] = [
             <h1 style="font-size:clamp(2rem,5vw,3.5rem);font-weight:700;line-height:1.1;margin-bottom:16px;" data-bloxx-slot="headline">{{headline}}</h1>
             <p style="font-size:1.125rem;opacity:0.9;margin-bottom:32px;" data-bloxx-slot="subtitle">{{subtitle}}</p>
             <div style="display:flex;gap:16px;justify-content:center;">
-              <a href="#" style="background:#fff;color:#f5576c;padding:12px 28px;border-radius:8px;font-weight:600;">{{cta_text}}</a>
-              <a href="#" style="padding:12px 28px;border-radius:8px;border:1px solid rgba(255,255,255,0.4);color:#fff;">{{secondary_text}}</a>
+              <span style="background:#fff;color:#f5576c;padding:12px 28px;border-radius:8px;font-weight:600;">{{cta_text}}</span>
+              <span style="padding:12px 28px;border-radius:8px;border:1px solid rgba(255,255,255,0.4);color:#fff;">{{secondary_text}}</span>
             </div>
           </div>
         </section>`,
@@ -125,7 +125,7 @@ export const heroBlocks: BlockDefinition[] = [
           <div style="max-width:700px;margin:0 auto;">
             <h1 style="font-size:clamp(2rem,5vw,3.5rem);font-weight:700;line-height:1.1;margin-bottom:16px;" data-bloxx-slot="headline">{{headline}}</h1>
             <p style="font-size:1.125rem;opacity:0.85;margin-bottom:32px;" data-bloxx-slot="subtitle">{{subtitle}}</p>
-            <a href="#" style="display:inline-block;background:#2563EB;color:#fff;padding:14px 32px;border-radius:8px;font-weight:600;">{{cta_text}}</a>
+            <span style="display:inline-block;background:#2563EB;color:#fff;padding:14px 32px;border-radius:8px;font-weight:600;">{{cta_text}}</span>
           </div>
         </section>`,
       },
@@ -136,7 +136,7 @@ export const heroBlocks: BlockDefinition[] = [
           <div style="max-width:700px;margin:0 auto;">
             <h1 style="font-size:clamp(2rem,5vw,3.5rem);font-weight:700;line-height:1.1;margin-bottom:16px;" data-bloxx-slot="headline">{{headline}}</h1>
             <p style="font-size:1.125rem;opacity:0.9;margin-bottom:32px;" data-bloxx-slot="subtitle">{{subtitle}}</p>
-            <a href="#" style="display:inline-block;background:#fff;color:#2563EB;padding:14px 32px;border-radius:8px;font-weight:600;">{{cta_text}}</a>
+            <span style="display:inline-block;background:#fff;color:#2563EB;padding:14px 32px;border-radius:8px;font-weight:600;">{{cta_text}}</span>
           </div>
         </section>`,
       },
@@ -165,7 +165,7 @@ export const heroBlocks: BlockDefinition[] = [
           <div style="position:relative;z-index:2;max-width:700px;margin:0 auto;">
             <h1 style="font-size:clamp(2rem,5vw,3.5rem);font-weight:700;line-height:1.1;margin-bottom:16px;" data-bloxx-slot="headline">{{headline}}</h1>
             <p style="font-size:1.125rem;opacity:0.85;margin-bottom:32px;" data-bloxx-slot="subtitle">{{subtitle}}</p>
-            <a href="#" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.2);backdrop-filter:blur(8px);color:#fff;padding:14px 28px;border-radius:999px;border:1px solid rgba(255,255,255,0.3);font-weight:600;">▶ {{cta_text}}</a>
+            <span style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.2);backdrop-filter:blur(8px);color:#fff;padding:14px 28px;border-radius:999px;border:1px solid rgba(255,255,255,0.3);font-weight:600;">▶ {{cta_text}}</span>
           </div>
         </section>`,
       },
@@ -177,7 +177,7 @@ export const heroBlocks: BlockDefinition[] = [
             <span style="display:inline-block;padding:6px 16px;background:#e0e7ff;color:#2563EB;border-radius:999px;font-size:0.875rem;font-weight:500;margin-bottom:16px;">Watch</span>
             <h1 style="font-size:clamp(1.75rem,4vw,3rem);font-weight:700;line-height:1.1;margin-bottom:12px;" data-bloxx-slot="headline">{{headline}}</h1>
             <p style="color:#666;margin-bottom:32px;" data-bloxx-slot="subtitle">{{subtitle}}</p>
-            <a href="#" style="display:inline-flex;align-items:center;gap:8px;color:#2563EB;font-weight:600;padding:12px 24px;border:2px solid #2563EB;border-radius:8px;">▶ {{cta_text}}</a>
+            <span style="display:inline-flex;align-items:center;gap:8px;color:#2563EB;font-weight:600;padding:12px 24px;border:2px solid #2563EB;border-radius:8px;">▶ {{cta_text}}</span>
           </div>
         </section>`,
       },

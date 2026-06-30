@@ -20,7 +20,7 @@ export const ctaBlocks: BlockDefinition[] = [
         template: `<section style="text-align:center;padding:96px 24px;background:#2563EB;color:#fff;">
           <h2 style="font-size:2rem;font-weight:700;margin-bottom:12px;" data-bloxx-slot="heading">{{heading}}</h2>
           <p style="opacity:0.9;margin-bottom:32px;max-width:500px;margin-left:auto;margin-right:auto;" data-bloxx-slot="description">{{description}}</p>
-          <a href="#" style="display:inline-block;background:#fff;color:#2563EB;padding:14px 32px;border-radius:8px;font-weight:600;">{{button_text}}</a>
+          <span style="display:inline-block;background:#fff;color:#2563EB;padding:14px 32px;border-radius:8px;font-weight:600;">{{button_text}}</span>
         </section>`,
       },
       {
@@ -31,7 +31,7 @@ export const ctaBlocks: BlockDefinition[] = [
             <h2 style="font-size:1.75rem;font-weight:700;margin-bottom:8px;" data-bloxx-slot="heading">{{heading}}</h2>
             <p style="color:#666;" data-bloxx-slot="description">{{description}}</p>
           </div>
-          <a href="#" style="background:#2563EB;color:#fff;padding:14px 32px;border-radius:8px;font-weight:600;white-space:nowrap;">{{button_text}}</a>
+          <span style="background:#2563EB;color:#fff;padding:14px 32px;border-radius:8px;font-weight:600;white-space:nowrap;">{{button_text}}</span>
         </section>`,
       },
       {
@@ -42,7 +42,7 @@ export const ctaBlocks: BlockDefinition[] = [
           <p style="color:#666;margin-bottom:24px;" data-bloxx-slot="description">{{description}}</p>
           <div style="display:flex;gap:12px;max-width:400px;margin:0 auto;">
             <input type="email" placeholder="your@email.com" style="flex:1;padding:12px 16px;border:1px solid #ddd;border-radius:8px;font-size:1rem;" />
-            <a href="#" style="background:#2563EB;color:#fff;padding:12px 24px;border-radius:8px;font-weight:600;">{{button_text}}</a>
+            <span style="background:#2563EB;color:#fff;padding:12px 24px;border-radius:8px;font-weight:600;">{{button_text}}</span>
           </div>
         </section>`,
       },
@@ -70,8 +70,8 @@ export const ctaBlocks: BlockDefinition[] = [
           <h2 style="font-size:clamp(1.5rem,3vw,2.5rem);font-weight:700;margin-bottom:12px;" data-bloxx-slot="heading">{{heading}}</h2>
           <p style="opacity:0.9;margin-bottom:32px;max-width:550px;margin-left:auto;margin-right:auto;" data-bloxx-slot="description">{{description}}</p>
           <div style="display:flex;gap:16px;justify-content:center;">
-            <a href="#" style="background:#fff;color:#2563EB;padding:14px 32px;border-radius:8px;font-weight:600;">{{button_text}}</a>
-            <a href="#" style="padding:14px 32px;border-radius:8px;border:1px solid rgba(255,255,255,0.4);color:#fff;">{{button2_text}}</a>
+            <span style="background:#fff;color:#2563EB;padding:14px 32px;border-radius:8px;font-weight:600;">{{button_text}}</span>
+            <span style="padding:14px 32px;border-radius:8px;border:1px solid rgba(255,255,255,0.4);color:#fff;">{{button2_text}}</span>
           </div>
         </section>`,
       },
@@ -82,7 +82,7 @@ export const ctaBlocks: BlockDefinition[] = [
           <div style="flex:1;">
             <h2 style="font-size:1.75rem;font-weight:700;margin-bottom:12px;" data-bloxx-slot="heading">{{heading}}</h2>
             <p style="opacity:0.9;margin-bottom:24px;" data-bloxx-slot="description">{{description}}</p>
-            <a href="#" style="display:inline-block;background:#fff;color:#2563EB;padding:14px 32px;border-radius:8px;font-weight:600;">{{button_text}}</a>
+            <span style="display:inline-block;background:#fff;color:#2563EB;padding:14px 32px;border-radius:8px;font-weight:600;">{{button_text}}</span>
           </div>
           <div style="flex:1;background:rgba(255,255,255,0.1);border-radius:12px;height:200px;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px);">Dashboard preview</div>
         </section>`,
@@ -111,14 +111,14 @@ export const ctaBlocks: BlockDefinition[] = [
         template: `<section style="text-align:center;padding:96px 24px;">
           <h2 style="font-size:2rem;font-weight:700;margin-bottom:12px;" data-bloxx-slot="heading">{{heading}}</h2>
           <p style="color:#666;margin-bottom:32px;max-width:500px;margin-left:auto;margin-right:auto;" data-bloxx-slot="description">{{description}}</p>
-          <a href="#" style="display:inline-block;background:#2563EB;color:#fff;padding:14px 32px;border-radius:8px;font-weight:600;">{{button_text}}</a>
+          <span style="display:inline-block;background:#2563EB;color:#fff;padding:14px 32px;border-radius:8px;font-weight:600;">{{button_text}}</span>
           <div style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;z-index:100;">
             <div style="background:#fff;border-radius:16px;padding:40px;max-width:420px;width:90%;position:relative;">
               <span style="position:absolute;top:16px;right:16px;cursor:pointer;font-size:1.25rem;color:#888;">✕</span>
               <h3 style="font-size:1.5rem;font-weight:700;margin-bottom:12px;" data-bloxx-slot="modal_title">{{modal_title}}</h3>
               <p style="color:#666;margin-bottom:24px;" data-bloxx-slot="modal_desc">{{modal_desc}}</p>
               <input type="email" placeholder="your@email.com" style="width:100%;padding:12px 16px;border:1px solid #ddd;border-radius:8px;font-size:1rem;margin-bottom:16px;box-sizing:border-box;" />
-              <a href="#" style="display:block;text-align:center;background:#2563EB;color:#fff;padding:12px;border-radius:8px;font-weight:600;">{{button_text}}</a>
+              <span style="display:block;text-align:center;background:#2563EB;color:#fff;padding:12px;border-radius:8px;font-weight:600;">{{button_text}}</span>
             </div>
           </div>
         </section>`,
@@ -131,7 +131,7 @@ export const ctaBlocks: BlockDefinition[] = [
           <p style="color:#666;margin-bottom:32px;max-width:500px;margin-left:auto;margin-right:auto;" data-bloxx-slot="description">{{description}}</p>
           <div style="display:flex;gap:12px;max-width:440px;margin:0 auto;">
             <input type="email" placeholder="your@email.com" style="flex:1;padding:12px 16px;border:1px solid #ddd;border-radius:8px;font-size:1rem;" />
-            <a href="#" style="background:#2563EB;color:#fff;padding:12px 24px;border-radius:8px;font-weight:600;white-space:nowrap;">{{button_text}}</a>
+            <span style="background:#2563EB;color:#fff;padding:12px 24px;border-radius:8px;font-weight:600;white-space:nowrap;">{{button_text}}</span>
           </div>
         </section>`,
       },
@@ -165,7 +165,7 @@ export const ctaBlocks: BlockDefinition[] = [
             <div style="display:flex;align-items:center;gap:8px;"><span style="color:#2563EB;">✓</span> <span data-bloxx-slot="feature2">{{feature2}}</span></div>
             <div style="display:flex;align-items:center;gap:8px;"><span style="color:#2563EB;">✓</span> <span data-bloxx-slot="feature3">{{feature3}}</span></div>
           </div>
-          <a href="#" style="display:inline-block;background:#2563EB;color:#fff;padding:14px 36px;border-radius:8px;font-weight:600;">{{button_text}}</a>
+          <span style="display:inline-block;background:#2563EB;color:#fff;padding:14px 36px;border-radius:8px;font-weight:600;">{{button_text}}</span>
           <p style="color:#888;font-size:0.875rem;margin-top:12px;">No credit card required</p>
         </section>`,
       },

@@ -17,9 +17,9 @@ export const footerBlocks: BlockDefinition[] = [
         name: 'Default',
         template: `<footer style="text-align:center;padding:48px 24px;border-top:1px solid #eee;color:#888;font-size:0.875rem;">
           <div style="display:flex;gap:24px;justify-content:center;margin-bottom:16px;">
-            <a href="#">Privacy</a>
-            <a href="#">Terms</a>
-            <a href="#">Contact</a>
+            <span>Privacy</span>
+            <span>Terms</span>
+            <span>Contact</span>
           </div>
           <div data-bloxx-slot="copyright">{{copyright}}</div>
         </footer>`,
@@ -30,9 +30,9 @@ export const footerBlocks: BlockDefinition[] = [
         template: `<footer style="padding:64px 24px 32px;max-width:1200px;margin:0 auto;">
           <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px;">
             <div><div style="font-weight:700;margin-bottom:12px;">Bloxx</div><p style="color:#888;font-size:0.875rem;">Building the future of design.</p></div>
-            <div><div style="font-weight:600;margin-bottom:8px;">Product</div><div style="display:flex;flex-direction:column;gap:4px;color:#888;font-size:0.875rem;"><a href="#">Features</a><a href="#">Pricing</a></div></div>
-            <div><div style="font-weight:600;margin-bottom:8px;">Company</div><div style="display:flex;flex-direction:column;gap:4px;color:#888;font-size:0.875rem;"><a href="#">About</a><a href="#">Blog</a></div></div>
-            <div><div style="font-weight:600;margin-bottom:8px;">Legal</div><div style="display:flex;flex-direction:column;gap:4px;color:#888;font-size:0.875rem;"><a href="#">Privacy</a><a href="#">Terms</a></div></div>
+            <div><div style="font-weight:600;margin-bottom:8px;">Product</div><div style="display:flex;flex-direction:column;gap:4px;color:#888;font-size:0.875rem;"><span>Features</span><span>Pricing</span></div></div>
+            <div><div style="font-weight:600;margin-bottom:8px;">Company</div><div style="display:flex;flex-direction:column;gap:4px;color:#888;font-size:0.875rem;"><span>About</span><span>Blog</span></div></div>
+            <div><div style="font-weight:600;margin-bottom:8px;">Legal</div><div style="display:flex;flex-direction:column;gap:4px;color:#888;font-size:0.875rem;"><span>Privacy</span><span>Terms</span></div></div>
           </div>
           <div style="border-top:1px solid #eee;padding-top:24px;text-align:center;color:#888;font-size:0.875rem;" data-bloxx-slot="copyright">{{copyright}}</div>
         </footer>`,
@@ -71,8 +71,8 @@ export const footerBlocks: BlockDefinition[] = [
           <div style="display:flex;justify-content:space-between;align-items:center;padding-top:24px;border-top:1px solid #f0f0f0;color:#888;font-size:0.875rem;flex-wrap:wrap;gap:8px;">
             <div data-bloxx-slot="copyright">{{copyright}}</div>
             <div style="display:flex;gap:16px;">
-              <a href="#">Privacy Policy</a>
-              <a href="#">Terms of Service</a>
+              <span>Privacy Policy</span>
+              <span>Terms of Service</span>
             </div>
           </div>
         </footer>`,

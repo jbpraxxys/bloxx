@@ -231,7 +231,7 @@ export const contentBlocks: BlockDefinition[] = [
               <label style="display:block;margin-bottom:6px;font-weight:500;font-size:0.9375rem;">Message</label>
               <textarea placeholder="Your message" rows="4" style="width:100%;padding:12px 16px;border:1px solid #ddd;border-radius:8px;font-size:1rem;box-sizing:border-box;resize:vertical;font-family:inherit;"></textarea>
             </div>
-            <a href="#" style="display:block;text-align:center;background:#2563EB;color:#fff;padding:14px;border-radius:8px;font-weight:600;">{{button_text}}</a>
+            <span style="display:block;text-align:center;background:#2563EB;color:#fff;padding:14px;border-radius:8px;font-weight:600;">{{button_text}}</span>
           </form>
         </section>`,
       },

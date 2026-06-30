@@ -386,7 +386,7 @@ export const featuresBlocks: BlockDefinition[] = [
               <span style="display:inline-block;background:#e0e7ff;color:#2563EB;padding:4px 12px;border-radius:999px;font-size:0.875rem;font-weight:500;margin-bottom:16px;" data-bloxx-slot="stat_text">{{stat_text}}</span>
               <h3 style="font-size:1.75rem;font-weight:700;line-height:1.2;margin-bottom:16px;" data-bloxx-slot="highlight_title">{{highlight_title}}</h3>
               <p style="color:#666;line-height:1.7;margin-bottom:24px;" data-bloxx-slot="highlight_desc">{{highlight_desc}}</p>
-              <a href="#" style="display:inline-block;color:#2563EB;font-weight:600;">{{cta_text}}</a>
+              <span style="display:inline-block;color:#2563EB;font-weight:600;">{{cta_text}}</span>
             </div>
           </div>
         </section>`,

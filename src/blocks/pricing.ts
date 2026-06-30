@@ -33,7 +33,7 @@ export const pricingBlocks: BlockDefinition[] = [
               <ul style="list-style:none;padding:0;">
                 <li style="padding:8px 0;border-bottom:1px solid #f0f0f0;">✓ {{tier1_feature1}}</li>
               </ul>
-              <a href="#" style="display:block;text-align:center;margin-top:24px;padding:12px;border:1px solid #ddd;border-radius:8px;">Get Started</a>
+              <span style="display:block;text-align:center;margin-top:24px;padding:12px;border:1px solid #ddd;border-radius:8px;">Get Started</span>
             </div>
             <div style="border:2px solid #2563EB;border-radius:12px;padding:32px;position:relative;">
               <span style="position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:#2563EB;color:#fff;padding:4px 16px;border-radius:999px;font-size:0.875rem;">Popular</span>
@@ -42,7 +42,7 @@ export const pricingBlocks: BlockDefinition[] = [
               <ul style="list-style:none;padding:0;">
                 <li style="padding:8px 0;border-bottom:1px solid #f0f0f0;">✓ {{tier2_feature1}}</li>
               </ul>
-              <a href="#" style="display:block;text-align:center;margin-top:24px;padding:12px;background:#2563EB;color:#fff;border-radius:8px;">Get Started</a>
+              <span style="display:block;text-align:center;margin-top:24px;padding:12px;background:#2563EB;color:#fff;border-radius:8px;">Get Started</span>
             </div>
             <div style="border:1px solid #eee;border-radius:12px;padding:32px;">
               <h3 style="font-weight:600;margin-bottom:8px;">{{tier3_name}}</h3>
@@ -50,7 +50,7 @@ export const pricingBlocks: BlockDefinition[] = [
               <ul style="list-style:none;padding:0;">
                 <li style="padding:8px 0;border-bottom:1px solid #f0f0f0;">✓ {{tier3_feature1}}</li>
               </ul>
-              <a href="#" style="display:block;text-align:center;margin-top:24px;padding:12px;border:1px solid #ddd;border-radius:8px;">Contact Sales</a>
+              <span style="display:block;text-align:center;margin-top:24px;padding:12px;border:1px solid #ddd;border-radius:8px;">Contact Sales</span>
             </div>
           </div>
         </section>`,
@@ -93,7 +93,7 @@ export const pricingBlocks: BlockDefinition[] = [
               <ul style="list-style:none;padding:0;margin-bottom:24px;">
                 <li style="padding:6px 0;border-bottom:1px solid #f5f5f5;">✓ {{tier1_feat1}}</li>
               </ul>
-              <a href="#" style="display:block;text-align:center;padding:10px;border:1px solid #ddd;border-radius:8px;">Get Started</a>
+              <span style="display:block;text-align:center;padding:10px;border:1px solid #ddd;border-radius:8px;">Get Started</span>
             </div>
             <div style="border:1px solid #eee;border-radius:12px;padding:28px 20px;">
               <h3 style="font-weight:600;margin-bottom:4px;" data-bloxx-slot="tier2_name">{{tier2_name}}</h3>
@@ -101,7 +101,7 @@ export const pricingBlocks: BlockDefinition[] = [
               <ul style="list-style:none;padding:0;margin-bottom:24px;">
                 <li style="padding:6px 0;border-bottom:1px solid #f5f5f5;">✓ {{tier2_feat1}}</li>
               </ul>
-              <a href="#" style="display:block;text-align:center;padding:10px;border:1px solid #ddd;border-radius:8px;">Get Started</a>
+              <span style="display:block;text-align:center;padding:10px;border:1px solid #ddd;border-radius:8px;">Get Started</span>
             </div>
             <div style="border:2px solid #2563EB;border-radius:12px;padding:28px 20px;position:relative;">
               <span style="position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:#2563EB;color:#fff;padding:4px 16px;border-radius:999px;font-size:0.8rem;">Popular</span>
@@ -110,7 +110,7 @@ export const pricingBlocks: BlockDefinition[] = [
               <ul style="list-style:none;padding:0;margin-bottom:24px;">
                 <li style="padding:6px 0;border-bottom:1px solid #f5f5f5;">✓ {{tier3_feat1}}</li>
               </ul>
-              <a href="#" style="display:block;text-align:center;padding:10px;background:#2563EB;color:#fff;border-radius:8px;">Get Started</a>
+              <span style="display:block;text-align:center;padding:10px;background:#2563EB;color:#fff;border-radius:8px;">Get Started</span>
             </div>
             <div style="border:1px solid #eee;border-radius:12px;padding:28px 20px;">
               <h3 style="font-weight:600;margin-bottom:4px;" data-bloxx-slot="tier4_name">{{tier4_name}}</h3>
@@ -118,7 +118,7 @@ export const pricingBlocks: BlockDefinition[] = [
               <ul style="list-style:none;padding:0;margin-bottom:24px;">
                 <li style="padding:6px 0;border-bottom:1px solid #f5f5f5;">✓ {{tier4_feat1}}</li>
               </ul>
-              <a href="#" style="display:block;text-align:center;padding:10px;border:1px solid #ddd;border-radius:8px;">Contact Sales</a>
+              <span style="display:block;text-align:center;padding:10px;border:1px solid #ddd;border-radius:8px;">Contact Sales</span>
             </div>
           </div>
         </section>`,
@@ -135,7 +135,7 @@ export const pricingBlocks: BlockDefinition[] = [
               <ul style="list-style:none;padding:0;margin-bottom:20px;">
                 <li style="padding:6px 0;font-size:0.9375rem;">✓ {{tier1_feat1}}</li>
               </ul>
-              <a href="#" style="display:block;text-align:center;padding:10px;border:1px solid #ddd;border-radius:8px;font-size:0.9375rem;">Get Started</a>
+              <span style="display:block;text-align:center;padding:10px;border:1px solid #ddd;border-radius:8px;font-size:0.9375rem;">Get Started</span>
             </div>
             <div style="border:1px solid #eee;border-radius:12px;padding:24px 20px;">
               <h3 style="font-weight:600;margin-bottom:4px;" data-bloxx-slot="tier2_name">{{tier2_name}}</h3>
@@ -143,7 +143,7 @@ export const pricingBlocks: BlockDefinition[] = [
               <ul style="list-style:none;padding:0;margin-bottom:20px;">
                 <li style="padding:6px 0;font-size:0.9375rem;">✓ {{tier2_feat1}}</li>
               </ul>
-              <a href="#" style="display:block;text-align:center;padding:10px;border:1px solid #ddd;border-radius:8px;font-size:0.9375rem;">Get Started</a>
+              <span style="display:block;text-align:center;padding:10px;border:1px solid #ddd;border-radius:8px;font-size:0.9375rem;">Get Started</span>
             </div>
             <div style="border:2px solid #2563EB;border-radius:12px;padding:32px 24px;position:relative;background:#fff;transform:scaleY(1.05);transform-origin:bottom;">
               <span style="position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:#2563EB;color:#fff;padding:4px 16px;border-radius:999px;font-size:0.8rem;">Popular</span>
@@ -152,7 +152,7 @@ export const pricingBlocks: BlockDefinition[] = [
               <ul style="list-style:none;padding:0;margin-bottom:20px;">
                 <li style="padding:6px 0;font-size:0.9375rem;">✓ {{tier3_feat1}}</li>
               </ul>
-              <a href="#" style="display:block;text-align:center;padding:10px;background:#2563EB;color:#fff;border-radius:8px;">Get Started</a>
+              <span style="display:block;text-align:center;padding:10px;background:#2563EB;color:#fff;border-radius:8px;">Get Started</span>
             </div>
             <div style="border:1px solid #eee;border-radius:12px;padding:24px 20px;">
               <h3 style="font-weight:600;margin-bottom:4px;" data-bloxx-slot="tier4_name">{{tier4_name}}</h3>
@@ -160,7 +160,7 @@ export const pricingBlocks: BlockDefinition[] = [
               <ul style="list-style:none;padding:0;margin-bottom:20px;">
                 <li style="padding:6px 0;font-size:0.9375rem;">✓ {{tier4_feat1}}</li>
               </ul>
-              <a href="#" style="display:block;text-align:center;padding:10px;border:1px solid #ddd;border-radius:8px;font-size:0.9375rem;">Contact Sales</a>
+              <span style="display:block;text-align:center;padding:10px;border:1px solid #ddd;border-radius:8px;font-size:0.9375rem;">Contact Sales</span>
             </div>
           </div>
         </section>`,
@@ -202,19 +202,19 @@ export const pricingBlocks: BlockDefinition[] = [
             <div style="border:1px solid #eee;border-radius:12px;padding:32px 24px;text-align:center;">
               <h3 style="font-weight:600;margin-bottom:8px;" data-bloxx-slot="tier1_name">{{tier1_name}}</h3>
               <div style="font-size:2rem;font-weight:700;margin-bottom:24px;" data-bloxx-slot="tier1_monthly">{{tier1_monthly}}</div>
-              <a href="#" style="display:block;padding:12px;border:1px solid #ddd;border-radius:8px;">Get Started</a>
+              <span style="display:block;padding:12px;border:1px solid #ddd;border-radius:8px;">Get Started</span>
             </div>
             <div style="border:2px solid #2563EB;border-radius:12px;padding:32px 24px;text-align:center;position:relative;">
               <span style="position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:#2563EB;color:#fff;padding:4px 16px;border-radius:999px;font-size:0.8rem;">Popular</span>
               <h3 style="font-weight:600;margin-bottom:8px;" data-bloxx-slot="tier2_name">{{tier2_name}}</h3>
               <div style="font-size:2rem;font-weight:700;margin-bottom:8px;" data-bloxx-slot="tier2_monthly">{{tier2_monthly}}</div>
               <div style="font-size:0.875rem;color:#888;margin-bottom:24px;" data-bloxx-slot="tier2_yearly">or {{tier2_yearly}}</div>
-              <a href="#" style="display:block;padding:12px;background:#2563EB;color:#fff;border-radius:8px;">Get Started</a>
+              <span style="display:block;padding:12px;background:#2563EB;color:#fff;border-radius:8px;">Get Started</span>
             </div>
             <div style="border:1px solid #eee;border-radius:12px;padding:32px 24px;text-align:center;">
               <h3 style="font-weight:600;margin-bottom:8px;" data-bloxx-slot="tier3_name">{{tier3_name}}</h3>
               <div style="font-size:1.5rem;font-weight:600;margin-bottom:24px;color:#666;" data-bloxx-slot="tier3_contact">{{tier3_contact}}</div>
-              <a href="#" style="display:block;padding:12px;border:1px solid #ddd;border-radius:8px;">Contact Sales</a>
+              <span style="display:block;padding:12px;border:1px solid #ddd;border-radius:8px;">Contact Sales</span>
             </div>
           </div>
         </section>`,
@@ -229,18 +229,18 @@ export const pricingBlocks: BlockDefinition[] = [
             <div style="border:1px solid #eee;border-radius:12px;padding:32px 24px;text-align:center;">
               <h3 style="font-weight:600;margin-bottom:8px;" data-bloxx-slot="tier1_name">{{tier1_name}}</h3>
               <div style="font-size:2rem;font-weight:700;margin-bottom:24px;" data-bloxx-slot="tier1_yearly">{{tier1_yearly}}</div>
-              <a href="#" style="display:block;padding:12px;border:1px solid #ddd;border-radius:8px;">Get Started</a>
+              <span style="display:block;padding:12px;border:1px solid #ddd;border-radius:8px;">Get Started</span>
             </div>
             <div style="border:2px solid #2563EB;border-radius:12px;padding:32px 24px;text-align:center;position:relative;">
               <span style="position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:#2563EB;color:#fff;padding:4px 16px;border-radius:999px;font-size:0.8rem;">Popular</span>
               <h3 style="font-weight:600;margin-bottom:8px;" data-bloxx-slot="tier2_name">{{tier2_name}}</h3>
               <div style="font-size:2rem;font-weight:700;margin-bottom:24px;" data-bloxx-slot="tier2_yearly">{{tier2_yearly}}</div>
-              <a href="#" style="display:block;padding:12px;background:#2563EB;color:#fff;border-radius:8px;">Get Started</a>
+              <span style="display:block;padding:12px;background:#2563EB;color:#fff;border-radius:8px;">Get Started</span>
             </div>
             <div style="border:1px solid #eee;border-radius:12px;padding:32px 24px;text-align:center;">
               <h3 style="font-weight:600;margin-bottom:8px;" data-bloxx-slot="tier3_name">{{tier3_name}}</h3>
               <div style="font-size:1.5rem;font-weight:600;margin-bottom:24px;color:#666;" data-bloxx-slot="tier3_contact">{{tier3_contact}}</div>
-              <a href="#" style="display:block;padding:12px;border:1px solid #ddd;border-radius:8px;">Contact Sales</a>
+              <span style="display:block;padding:12px;border:1px solid #ddd;border-radius:8px;">Contact Sales</span>
             </div>
           </div>
         </section>`,
@@ -279,7 +279,7 @@ export const pricingBlocks: BlockDefinition[] = [
                 <div style="display:flex;align-items:center;gap:8px;"><span style="color:#4ade80;">✓</span> <span style="opacity:0.9;" data-bloxx-slot="feature3">{{feature3}}</span></div>
                 <div style="display:flex;align-items:center;gap:8px;"><span style="color:#4ade80;">✓</span> <span style="opacity:0.9;" data-bloxx-slot="feature4">{{feature4}}</span></div>
               </div>
-              <a href="#" style="display:inline-block;background:#2563EB;color:#fff;padding:14px 32px;border-radius:8px;font-weight:600;">{{cta_text}}</a>
+              <span style="display:inline-block;background:#2563EB;color:#fff;padding:14px 32px;border-radius:8px;font-weight:600;">{{cta_text}}</span>
             </div>
             <div style="flex:1;text-align:center;">
               <div style="font-size:3rem;font-weight:700;margin-bottom:4px;">Custom</div>
