@@ -111,3 +111,42 @@ export const VIEWPORT_CONFIG: Record<ViewportDevice, { width: number; label: str
   tablet:  { width: 768,  label: 'Tablet',  icon: '📱' },
   mobile:  { width: 375,  label: 'Mobile',  icon: '📱' },
 }
+
+// ─── AI Integration ──────────────────────────────────────
+export type AIProviderType = 'openai' | 'anthropic'
+
+export interface AIProviderConfig {
+  type: AIProviderType
+  apiKey: string
+  model?: string
+}
+
+export interface AIContextPackage {
+  task: 'modify_element' | 'redesign_block' | 'generate_content'
+  selectedElement: {
+    blockIndex: number
+    blockId: string
+    variantId: string
+    elementRole: string
+    currentHtml?: string
+    currentStyles?: Record<string, string>
+  } | null
+  designTokens: Record<string, any>
+  pageContext: {
+    pageName: string
+    blockCount: number
+  }
+  userPrompt: string
+}
+
+export interface AIAction {
+  type: 'updateStyles' | 'updateContent' | 'setVariant' | 'addBlock' | 'removeBlock' | 'modifyStructure' | 'updateDesignToken'
+  selector?: string
+  properties?: Record<string, string>
+  field?: string
+  value?: string
+  variantId?: string
+  blockId?: string
+  tokenCategory?: string
+  tokenKey?: string
+}
