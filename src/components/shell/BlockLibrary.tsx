@@ -18,7 +18,7 @@ const CATEGORY_LABELS: Record<string, string> = {
 }
 
 const _BlockLibrary: React.FC = () => {
-  const { editorMode } = useCanvasStore()
+  const { editorMode, selectedBlockIndex, currentPageId, clearSelection } = useCanvasStore()
 
   const grouped = useMemo(() => {
     const map: Record<string, BlockDefinition[]> = {}
@@ -29,7 +29,18 @@ const _BlockLibrary: React.FC = () => {
   }, [])
 
   const [showEditor, setShowEditor] = useState(false)
-  const { project, addBlock, deleteCustomBlock } = useProjectStore()
+  const { project, addBlock, removeBlock, deleteCustomBlock } = useProjectStore()
+
+  const selectedBlock = project && currentPageId && selectedBlockIndex !== null
+    ? project.pages.find((p) => p.id === currentPageId)?.blocks[selectedBlockIndex]
+    : null
+
+  const handleRemoveSelected = () => {
+    if (selectedBlock && currentPageId) {
+      removeBlock(currentPageId, selectedBlock.id)
+      clearSelection()
+    }
+  }
 
   const handleDragStart = (e: React.DragEvent, block: BlockDefinition) => {
     e.dataTransfer.setData('text/plain', JSON.stringify({ blockId: block.id, variantId: block.defaultVariant }))
@@ -49,7 +60,34 @@ const _BlockLibrary: React.FC = () => {
   return (
     <div className="bloxx-library">
       <div className="bloxx-library__header">🧱 Block Library</div>
+
+      {selectedBlock && (
+        <div style={{
+          margin: '8px', padding: '8px 10px',
+          background: '#FEF2F2', border: '1px solid #FECACA',
+          borderRadius: 6, fontSize: '0.8rem',
+        }}>
+          <div style={{ fontWeight: 600, marginBottom: 4, color: '#991B1B' }}>
+            Selected on canvas
+          </div>
+          <div style={{ color: '#7F1D1D', marginBottom: 6, fontSize: '0.75rem' }}>
+            Block #{selectedBlockIndex! + 1}
+          </div>
           <button
+            onClick={handleRemoveSelected}
+            style={{
+              width: '100%', padding: '6px 0',
+              background: '#EF4444', color: '#fff',
+              border: 'none', borderRadius: 4,
+              cursor: 'pointer', fontWeight: 600, fontSize: '0.8rem',
+            }}
+          >
+            🗑 Remove from canvas
+          </button>
+        </div>
+      )}
+
+      <button
             onClick={() => setShowEditor(true)}
             style={{
               margin: '8px', padding: '6px 12px', border: '1px dashed #2563EB',
