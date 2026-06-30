@@ -4,6 +4,8 @@ import { CanvasContainer } from './components/canvas/CanvasContainer'
 import { BlockLibrary } from './components/shell/BlockLibrary'
 import { DesignSystemPanel } from './components/shell/DesignSystemPanel'
 import { useProjectStore } from './store/projectStore'
+import { AIChatWidget } from './components/shell/AIChatWidget'
+import { FloatingWidget } from './components/canvas/FloatingWidget'
 
 const App: React.FC = () => {
   const { projects, loadProjects, createProject, project, loadProject } = useProjectStore()
@@ -124,7 +126,9 @@ const App: React.FC = () => {
         </div>
         {activePanel === 'blocks' ? <BlockLibrary /> : <DesignSystemPanel />}
         <CanvasContainer />
+        <AIChatWidget />
       </div>
+      <FloatingWidget />
     </div>
   )
 }

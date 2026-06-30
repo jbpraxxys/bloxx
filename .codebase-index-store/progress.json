@@ -1,12 +1,12 @@
 {
   "phase": "done",
-  "message": "Re-indexed src/lib/response-parser.ts → 3 blocks",
-  "current": 315,
-  "total": 315,
+  "message": "Re-indexed src/App.tsx → 1 blocks",
+  "current": 318,
+  "total": 318,
   "percentage": 100,
-  "updatedAt": "2026-06-30T02:20:53.321Z",
+  "updatedAt": "2026-06-30T02:23:09.220Z",
   "files": 2,
-  "blocks": 315,
+  "blocks": 318,
   "dbPath": "/Users/jdbernardo/Sites/bloxx/.codebase-index-store",
-  "lastIndexed": "2026-06-30T02:20:53.321Z"
+  "lastIndexed": "2026-06-30T02:23:09.220Z"
 }
