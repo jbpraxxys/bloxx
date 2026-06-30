@@ -33,9 +33,10 @@ function buildPageHtml(page: any, blockDefs: Record<string, any>): string {
         html = `<div style="${cssProps}">${html}</div>`
       }
 
-      return `<div class="bloxx-block" data-block-index="${index}" data-block-id="${instance.blockId}">
+      return `<div class="bloxx-block${instance.position ? ' bloxx-block--freeform' : ''}" data-block-index="${index}" data-block-id="${instance.blockId}" style="${instance.position ? `position:absolute;left:${instance.position.x}px;top:${instance.position.y}px;width:${instance.position.width}px;height:${instance.position.height}px;` : ''}">
         <span class="bloxx-block__label">${def.name}</span>
         ${html}
+        ${instance.position ? '<div class="bloxx-block__resize-handle"></div>' : ''}
       </div>`
     })
     .join('\n')
@@ -55,6 +56,9 @@ window.addEventListener('message', (event: MessageEvent<ShellToCanvasMessage>) =
         }
         const pageHtml = buildPageHtml(msg.page, blockDefs)
         renderBlocks(pageHtml)
+
+        // Set canvas positioning for freeform mode
+        canvasEl.style.position = 'relative'
 
         window.parent.postMessage(
           { type: 'RENDERED', blockCount: msg.page.blocks.length },
@@ -78,6 +82,10 @@ window.addEventListener('message', (event: MessageEvent<ShellToCanvasMessage>) =
     case 'SET_VIEWPORT_WIDTH':
       document.body.style.width = `${msg.width}px`
       document.body.style.margin = '0 auto'
+      break
+
+    case 'TOGGLE_MODE':
+      canvasEl.classList.toggle('bloxx-canvas--freeform', msg.mode === 'freeform')
       break
 
     default:
@@ -189,6 +197,45 @@ canvasEl.addEventListener('dblclick', (e) => {
 
   slotEl.addEventListener('blur', finishEditing)
   document.addEventListener('keydown', handleEscape)
+})
+
+// ─── Free-form drag/resize ─────────────────────────────
+document.addEventListener('mousedown', (e) => {
+  const handle = (e.target as HTMLElement).closest('.bloxx-block__resize-handle') as HTMLElement | null
+  if (!handle) return
+
+  e.preventDefault()
+  const block = handle.closest('.bloxx-block') as HTMLElement
+  const startX = e.clientX
+  const startY = e.clientY
+  const startW = block.offsetWidth
+  const startH = block.offsetHeight
+
+  const onMouseMove = (ev: MouseEvent) => {
+    const w = Math.max(200, startW + (ev.clientX - startX))
+    const h = Math.max(100, startH + (ev.clientY - startY))
+    block.style.width = `${w}px`
+    block.style.height = `${h}px`
+  }
+
+  const onMouseUp = (_ev: MouseEvent) => {
+    document.removeEventListener('mousemove', onMouseMove)
+    document.removeEventListener('mouseup', onMouseUp)
+    const index = parseInt(block.dataset.blockIndex ?? '-1', 10)
+    window.parent.postMessage({
+      type: 'BLOCK_POSITION_UPDATED',
+      blockIndex: index,
+      position: {
+        x: block.offsetLeft,
+        y: block.offsetTop,
+        width: block.offsetWidth,
+        height: block.offsetHeight,
+      },
+    }, '*')
+  }
+
+  document.addEventListener('mousemove', onMouseMove)
+  document.addEventListener('mouseup', onMouseUp)
 })
 
 // Notify parent that canvas is ready

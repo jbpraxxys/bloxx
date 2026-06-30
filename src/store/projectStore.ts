@@ -25,6 +25,7 @@ interface ProjectState {
   updateBlockContent: (pageId: string, blockInstanceId: string, content: Record<string, any>) => void
   updateBlockVariant: (pageId: string, blockInstanceId: string, variantId: string) => void
   updateBlockOverrides: (pageId: string, blockInstanceId: string, overrides: StyleOverride[]) => void
+  updateBlockPosition: (pageId: string, blockInstanceId: string, position: { x: number; y: number; width: number; height: number }) => void
 }
 
 export const useProjectStore = create<ProjectState>((set, get) => ({
@@ -219,6 +220,17 @@ export const useProjectStore = create<ProjectState>((set, get) => ({
     const block = page.blocks.find((b) => b.id === blockInstanceId)
     if (!block) return
     block.overrides = overrides
+    saveProject()
+  },
+
+  updateBlockPosition: (pageId, blockInstanceId, position) => {
+    const { project, saveProject } = get()
+    if (!project) return
+    const page = project.pages.find((p) => p.id === pageId)
+    if (!page) return
+    const block = page.blocks.find((b) => b.id === blockInstanceId)
+    if (!block) return
+    block.position = position
     saveProject()
   },
 }))

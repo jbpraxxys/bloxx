@@ -81,6 +81,17 @@ export const CanvasContainer: React.FC = () => {
           }
           break
         }
+
+        case 'BLOCK_POSITION_UPDATED': {
+          const { blockIndex, position } = msg as any
+          const currentProject = project
+          const pageId = currentProject?.pages[0]?.id
+          const block = currentProject?.pages[0]?.blocks[blockIndex]
+          if (pageId && block) {
+            useProjectStore.getState().updateBlockPosition(pageId, block.id, position)
+          }
+          break
+        }
       }
     }
 
@@ -99,6 +110,14 @@ export const CanvasContainer: React.FC = () => {
     if (!iframe?.contentWindow) return
     iframe.contentWindow.postMessage({ type: 'SET_VIEWPORT_WIDTH', width: viewportWidth }, '*')
   }, [viewportWidth])
+
+  // ─── Send canvas mode to iframe ──────────────────────
+  const canvasMode = useCanvasStore((s) => s.canvasMode)
+  useEffect(() => {
+    const iframe = iframeRef.current
+    if (!iframe?.contentWindow) return
+    iframe.contentWindow.postMessage({ type: 'TOGGLE_MODE', mode: canvasMode }, '*')
+  }, [canvasMode])
 
   // ─── Send selection to iframe ────────────────────────
   useEffect(() => {

@@ -48,3 +48,21 @@ a { color: inherit; text-decoration: none; }
 .bloxx-block:hover .bloxx-block__label {
   opacity: 1;
 }
+
+/* ─── Free-Form Mode ──────────────────────────────────────── */
+.bloxx-block--freeform {
+  position: absolute;
+  cursor: move;
+  overflow: hidden;
+}
+.bloxx-block__resize-handle {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 12px;
+  height: 12px;
+  background: #3b82f6;
+  cursor: se-resize;
+  border-radius: 2px;
+  z-index: 10;
+}

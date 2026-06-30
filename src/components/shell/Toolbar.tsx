@@ -5,7 +5,7 @@ import { undoRedo } from '../../lib/undo-redo'
 import { VIEWPORT_CONFIG, type ViewportDevice } from '../../types'
 
 export const Toolbar: React.FC = () => {
-  const { viewport, setViewport, editorMode, setEditorMode } = useCanvasStore()
+  const { viewport, setViewport, editorMode, setEditorMode, canvasMode, setCanvasMode } = useCanvasStore()
   const { project } = useProjectStore()
 
   const handlePreview = () => {
@@ -49,6 +49,16 @@ export const Toolbar: React.FC = () => {
               ),
             )}
           </div>
+
+          <div className="bloxx-toolbar__separator" />
+
+          <button
+            className={`bloxx-toolbar__btn ${canvasMode === 'freeform' ? 'bloxx-toolbar__btn--active' : ''}`}
+            onClick={() => setCanvasMode(canvasMode === 'stack' ? 'freeform' : 'stack')}
+            title={canvasMode === 'freeform' ? 'Switch to Stack mode' : 'Switch to Free-Form mode'}
+          >
+            {canvasMode === 'freeform' ? '📐 Stack' : '✂️ Free-Form'}
+          </button>
 
           <div className="bloxx-toolbar__separator" />
 
