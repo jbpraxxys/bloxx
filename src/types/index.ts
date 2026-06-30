@@ -79,8 +79,17 @@ export type ShellToCanvasMessage =
   | { type: 'TOGGLE_MODE'; mode: 'stack' | 'freeform' }
   | { type: 'SET_VIEWPORT_WIDTH'; width: number }
 
+export interface BoundingRect {
+  top: number
+  left: number
+  width: number
+  height: number
+  bottom: number
+  right: number
+}
+
 export type CanvasToShellMessage =
-  | { type: 'ELEMENT_SELECTED'; blockIndex: number; elementRole: string; boundingRect: DOMRect | null }
+  | { type: 'ELEMENT_SELECTED'; blockIndex: number; elementRole: string; boundingRect: BoundingRect | null }
   | { type: 'BLOCK_REORDERED'; fromIndex: number; toIndex: number }
   | { type: 'RENDERED'; blockCount: number }
   | { type: 'SCROLL'; scrollTop: number }
