@@ -1,0 +1,27 @@
+<div style="text-align:center; padding: 2rem 1rem;">
+  <h2>✅ Architecture Decision</h2>
+  <p class="subtitle">Sandboxed Canvas Architecture (Approach 2)</p>
+
+  <div style="max-width: 600px; margin: 2rem auto 0;">
+    <div style="display:flex; gap:0.5rem; align-items:center; justify-content:center; flex-wrap:wrap;">
+      <div style="border:2px solid #4CAF50; border-radius:12px; padding:1rem; background:#f0faf0; width:160px;">
+        <strong>App Shell</strong><br/>
+        <span style="font-size:0.8rem; color:#666;">Toolbar · Panels<br/>Chat · Export</span>
+      </div>
+      <div style="font-size:1.5rem; color:#4CAF50;">⇄</div>
+      <div style="border:2px solid #4CAF50; border-radius:12px; padding:1rem; background:#f0faf0; width:160px;">
+        <strong>Canvas Iframe</strong><br/>
+        <span style="font-size:0.8rem; color:#666;">DOM renderer<br/>Block display</span>
+      </div>
+      <div style="font-size:1.5rem; color:#4CAF50;">↑</div>
+      <div style="font-size:1.5rem; color:#4CAF50;">↓</div>
+      <div style="border:2px solid #4CAF50; border-radius:12px; padding:1rem; background:#f0faf0; width:160px;">
+        <strong>Data Layer</strong><br/>
+        <span style="font-size:0.8rem; color:#666;">IndexedDB + State</span>
+      </div>
+    </div>
+  </div>
+  <p style="margin-top: 2rem; color:#888; font-size:0.9rem;">
+    Next: Design sections in terminal →
+  </p>
+</div>

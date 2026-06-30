@@ -1,0 +1,12 @@
+{
+  "phase": "done",
+  "message": "Re-indexed docs/superpowers/plans/2026-06-30-bloxx-phase1.md → 89 blocks",
+  "current": 164,
+  "total": 164,
+  "percentage": 100,
+  "updatedAt": "2026-06-30T01:04:44.614Z",
+  "files": 0,
+  "blocks": 164,
+  "dbPath": "/Users/jdbernardo/Sites/bloxx/.codebase-index-store",
+  "lastIndexed": "2026-06-30T01:04:44.614Z"
+}
