@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useProjectStore } from '../../store/projectStore'
-import { curatedBlocks } from '../../blocks/curated'
+import { curatedBlocks } from '../../blocks'
 import { buildExport } from '../../lib/export-service'
 
 interface ExportDialogProps {

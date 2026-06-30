@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react'
-import { curatedBlocks } from '../../blocks/curated'
+import { curatedBlocks } from '../../blocks'
 import type { BlockDefinition } from '../../types'
 import { useCanvasStore } from '../../store/canvasStore'
 import { useProjectStore } from '../../store/projectStore'

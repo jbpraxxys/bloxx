@@ -49,7 +49,7 @@ window.addEventListener('message', (event: MessageEvent<ShellToCanvasMessage>) =
   switch (msg.type) {
     case 'RENDER': {
       // Load block definitions dynamically
-      import('../blocks/curated').then(({ curatedBlocks }) => {
+      import('../blocks').then(({ curatedBlocks }) => {
         const blockDefs: Record<string, any> = {}
         for (const block of curatedBlocks) {
           blockDefs[block.id] = block
