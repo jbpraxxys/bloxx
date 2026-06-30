@@ -41,13 +41,23 @@ export const CanvasContainer: React.FC = () => {
       if (!msg || !msg.type) return
 
       switch (msg.type) {
-        case 'ELEMENT_SELECTED':
+        case 'ELEMENT_SELECTED': {
           if (msg.blockIndex >= 0) {
             selectElement(msg.blockIndex, msg.elementRole)
+
+            // Capture element HTML from iframe for AI context
+            const iframe = iframeRef.current
+            if (iframe?.contentDocument) {
+              const blockEl = iframe.contentDocument.querySelector(`[data-block-index="${msg.blockIndex}"]`)
+              if (blockEl) {
+                window.__bloxxSelectedElementHtml = blockEl.outerHTML
+              }
+            }
           } else {
             clearSelection()
           }
           break
+        }
 
         case 'BLOCK_REORDERED': {
           const { fromIndex, toIndex } = msg
