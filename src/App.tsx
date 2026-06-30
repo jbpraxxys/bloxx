@@ -6,6 +6,7 @@ import { DesignSystemPanel } from './components/shell/DesignSystemPanel'
 import { useProjectStore } from './store/projectStore'
 import { AIChatWidget } from './components/shell/AIChatWidget'
 import { FloatingWidget } from './components/canvas/FloatingWidget'
+import { importBloxxHTML, loadImportedProject } from './lib/import-service'
 
 const App: React.FC = () => {
   const { projects, loadProjects, createProject, project, loadProject } = useProjectStore()
@@ -28,6 +29,19 @@ const App: React.FC = () => {
     loadProject(id)
   }
 
+  const handleImportFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (!file) return
+    const text = await file.text()
+    const imported = importBloxxHTML(text, file.name)
+    if (imported) {
+      loadImportedProject(imported)
+    } else {
+      alert('Not a valid Bloxx export file')
+    }
+    e.target.value = ''
+  }
+
   // Show project selector if no project is loaded
   if (!project) {
     return (
@@ -43,6 +57,17 @@ const App: React.FC = () => {
             >
               + New Project
             </button>
+          </div>
+
+          <div style={{ marginBottom: 24 }}>
+            <label style={{
+              display: 'inline-block', padding: '12px 32px',
+              border: '2px dashed #2563EB', borderRadius: 8,
+              color: '#2563EB', cursor: 'pointer', fontWeight: 600, fontSize: '1rem',
+            }}>
+              📂 Import HTML
+              <input type="file" accept=".html" onChange={handleImportFile} style={{ display: 'none' }} />
+            </label>
           </div>
 
           {showProjectDialog && (
