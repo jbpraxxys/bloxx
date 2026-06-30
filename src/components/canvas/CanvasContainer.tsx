@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useCallback } from 'react'
 import { useProjectStore } from '../../store/projectStore'
 import { useCanvasStore } from '../../store/canvasStore'
+import { useDesignTokensStore } from '../../store/designTokensStore'
 import { VIEWPORT_CONFIG } from '../../types'
 import { PreviewBar } from './PreviewBar'
 import type { CanvasToShellMessage } from '../../types'
@@ -11,6 +12,7 @@ export const CanvasContainer: React.FC = () => {
   const iframeRef = useRef<HTMLIFrameElement>(null)
   const { project } = useProjectStore()
   const { viewport, editorMode, selectedBlockIndex, selectElement, clearSelection } = useCanvasStore()
+  const isDirty = useDesignTokensStore((s) => s.isDirty)
 
   const viewportWidth = VIEWPORT_CONFIG[viewport].width
 
@@ -97,6 +99,13 @@ export const CanvasContainer: React.FC = () => {
       '*',
     )
   }, [selectedBlockIndex])
+
+  // ─── Re-render when design tokens are applied ────────
+  useEffect(() => {
+    if (!isDirty && project) {
+      sendRender()
+    }
+  }, [isDirty, sendRender, project])
 
   // ─── Handle drop from block library ──────────────────
   const handleDragOver = (e: React.DragEvent) => {

@@ -122,3 +122,10 @@ export const useDesignTokensStore = create<DesignTokensState>((set, get) => ({
     set({ isDirty: false })
   },
 }))
+
+// Auto-load tokens when project changes
+useProjectStore.subscribe((state) => {
+  if (state.project) {
+    useDesignTokensStore.getState().loadTokens()
+  }
+})
