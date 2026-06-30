@@ -29,7 +29,9 @@ function buildPageHtml(page: any, blockDefs: Record<string, any>): string {
       // Interpolate content into template
       let html = variant.template
       for (const [key, value] of Object.entries(instance.content ?? {})) {
-        html = html.replaceAll(`{{${key}}}`, String(value ?? ''))
+        if (value !== null && value !== undefined && value !== '') {
+          html = html.replaceAll(`{{${key}}}`, String(value))
+        }
       }
       // Replace any remaining placeholders with defaults from schema
       for (const [key, slot] of Object.entries(def.schema ?? {})) {
@@ -45,7 +47,7 @@ function buildPageHtml(page: any, blockDefs: Record<string, any>): string {
       }
 
       return `<div class="bloxx-block${instance.position ? ' bloxx-block--freeform' : ''}" data-block-index="${index}" data-block-id="${instance.blockId}" style="${instance.position ? `position:absolute;left:${instance.position.x}px;top:${instance.position.y}px;width:${instance.position.width}px;height:${instance.position.height}px;` : ''}">
-        <span class="bloxx-block__label">${def.name}</span>
+        <span class="bloxx-block__label">${def.name} (${variant.name})</span>
         ${html}
         ${instance.position ? '<div class="bloxx-block__resize-handle"></div>' : ''}
       </div>`

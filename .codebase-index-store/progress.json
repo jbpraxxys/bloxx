@@ -1,12 +1,12 @@
 {
   "phase": "done",
-  "message": "Re-indexed src/components/canvas/FloatingWidget.tsx → 2 blocks",
-  "current": 670,
-  "total": 670,
+  "message": "Re-indexed src/components/canvas/FloatingWidget.tsx → 4 blocks",
+  "current": 672,
+  "total": 672,
   "percentage": 100,
-  "updatedAt": "2026-06-30T04:59:21.426Z",
+  "updatedAt": "2026-06-30T05:04:27.298Z",
   "files": 2,
-  "blocks": 670,
+  "blocks": 672,
   "dbPath": "/Users/jdbernardo/Sites/bloxx/.codebase-index-store",
-  "lastIndexed": "2026-06-30T04:59:21.426Z"
+  "lastIndexed": "2026-06-30T05:04:27.298Z"
 }
