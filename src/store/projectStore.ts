@@ -44,18 +44,21 @@ export const useProjectStore = create<ProjectState>((set, get) => ({
 
   loadProject: async (id: string) => {
     const project = await projectService.getById(id)
-    if (project) set({ project })
+    if (project) set({ project: JSON.parse(JSON.stringify(project)) })
   },
 
   createProject: async (name: string) => {
     const project = await projectService.create(name)
-    set({ project })
+    set({ project: JSON.parse(JSON.stringify(project)) })
     return project
   },
 
   saveProject: async () => {
     const { project } = get()
-    if (project) await projectService.save(project)
+    if (project) {
+      await projectService.save(project)
+      set({ project: { ...project } }) // Force new reference for React
+    }
   },
 
   deleteProject: async (id: string) => {
