@@ -139,5 +139,57 @@ canvasEl.addEventListener('click', (e) => {
   }, '*')
 })
 
+// ─── Double-click to edit content ──────────────────────
+canvasEl.addEventListener('dblclick', (e) => {
+  const target = e.target as HTMLElement
+  const slotEl = target.closest('[data-bloxx-slot]') as HTMLElement | null
+  if (!slotEl) return
+
+  // Get parent block info before making editable
+  const blockEl = slotEl.closest('.bloxx-block') as HTMLElement | null
+  if (!blockEl) return
+  const blockIndex = parseInt(blockEl.dataset.blockIndex ?? '-1', 10)
+  const slotName = slotEl.dataset.bloxxSlot
+
+  // Make editable
+  slotEl.contentEditable = 'true'
+  slotEl.focus()
+
+  // Select all text
+  const range = document.createRange()
+  range.selectNodeContents(slotEl)
+  const selection = window.getSelection()
+  selection?.removeAllRanges()
+  selection?.addRange(range)
+
+  const finishEditing = () => {
+    slotEl.contentEditable = 'false'
+    const newContent = slotEl.innerText
+
+    if (slotName && newContent) {
+      window.parent.postMessage({
+        type: 'CONTENT_EDITED',
+        blockIndex,
+        slotName,
+        value: newContent,
+      }, '*')
+    }
+
+    slotEl.removeEventListener('blur', finishEditing)
+    document.removeEventListener('keydown', handleEscape)
+  }
+
+  const handleEscape = (ev: KeyboardEvent) => {
+    if (ev.key === 'Escape') {
+      slotEl.contentEditable = 'false'
+      slotEl.removeEventListener('blur', finishEditing)
+      document.removeEventListener('keydown', handleEscape)
+    }
+  }
+
+  slotEl.addEventListener('blur', finishEditing)
+  document.addEventListener('keydown', handleEscape)
+})
+
 // Notify parent that canvas is ready
 window.parent.postMessage({ type: 'RENDERED', blockCount: 0 }, '*')

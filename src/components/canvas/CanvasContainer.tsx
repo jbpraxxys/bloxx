@@ -56,6 +56,19 @@ export const CanvasContainer: React.FC = () => {
           }
           break
         }
+
+        case 'CONTENT_EDITED': {
+          const { blockIndex, slotName, value } = msg as any
+          const currentProject = project
+          if (currentProject) {
+            const pageId = currentProject.pages[0]?.id
+            const block = currentProject.pages[0]?.blocks[blockIndex]
+            if (pageId && block) {
+              useProjectStore.getState().updateBlockContent(pageId, block.id, { [slotName]: value })
+            }
+          }
+          break
+        }
       }
     }
 

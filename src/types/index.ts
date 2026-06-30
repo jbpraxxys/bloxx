@@ -94,6 +94,7 @@ export type CanvasToShellMessage =
   | { type: 'RENDERED'; blockCount: number }
   | { type: 'SCROLL'; scrollTop: number }
   | { type: 'WIDGET_ACTION'; action: 'close' | 'escape' }
+  | { type: 'CONTENT_EDITED'; blockIndex: number; slotName: string; value: string }
 
 export interface UndoAction {
   type: string
