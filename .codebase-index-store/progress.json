@@ -1,12 +1,12 @@
 {
   "phase": "done",
-  "message": "Re-indexed src/lib/__tests__/token-compiler.test.ts → 2 blocks",
-  "current": 252,
-  "total": 252,
+  "message": "Re-indexed src/lib/__tests__/component-styles.test.ts → 2 blocks",
+  "current": 257,
+  "total": 257,
   "percentage": 100,
-  "updatedAt": "2026-06-30T02:07:48.786Z",
+  "updatedAt": "2026-06-30T02:10:03.443Z",
   "files": 2,
-  "blocks": 252,
+  "blocks": 257,
   "dbPath": "/Users/jdbernardo/Sites/bloxx/.codebase-index-store",
-  "lastIndexed": "2026-06-30T02:07:48.786Z"
+  "lastIndexed": "2026-06-30T02:10:03.443Z"
 }
