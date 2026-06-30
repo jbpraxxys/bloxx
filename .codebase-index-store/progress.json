@@ -1,12 +1,12 @@
 {
   "phase": "done",
-  "message": "Re-indexed docs/superpowers/plans/2026-06-30-bloxx-phase1.md → 89 blocks",
-  "current": 164,
-  "total": 164,
+  "message": "Re-indexed src/canvas/main.tsx → 1 blocks",
+  "current": 150,
+  "total": 150,
   "percentage": 100,
-  "updatedAt": "2026-06-30T01:04:44.614Z",
-  "files": 0,
-  "blocks": 164,
+  "updatedAt": "2026-06-30T01:15:05.230Z",
+  "files": 2,
+  "blocks": 150,
   "dbPath": "/Users/jdbernardo/Sites/bloxx/.codebase-index-store",
-  "lastIndexed": "2026-06-30T01:04:44.614Z"
+  "lastIndexed": "2026-06-30T01:15:05.230Z"
 }
