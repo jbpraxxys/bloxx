@@ -1,12 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useCanvasStore } from '../../store/canvasStore'
 import { useProjectStore } from '../../store/projectStore'
+import { ExportDialog } from './ExportDialog'
 import { undoRedo } from '../../lib/undo-redo'
 import { VIEWPORT_CONFIG, type ViewportDevice } from '../../types'
 
 export const Toolbar: React.FC = () => {
   const { viewport, setViewport, editorMode, setEditorMode, canvasMode, setCanvasMode } = useCanvasStore()
   const { project } = useProjectStore()
+  const [showExport, setShowExport] = useState(false)
 
   const handlePreview = () => {
     if (editorMode === 'edit') {
@@ -83,6 +85,7 @@ export const Toolbar: React.FC = () => {
 
           <button className="bloxx-toolbar__btn" onClick={handlePreview}>👁 Preview</button>
           <button className="bloxx-toolbar__btn" onClick={handlePreviewTab}>↗ New Tab</button>
+          <button className="bloxx-toolbar__btn" onClick={() => setShowExport(true)}>📦 Export</button>
         </>
       ) : (
         <>
@@ -113,6 +116,8 @@ export const Toolbar: React.FC = () => {
           {project.name}
         </span>
       )}
+
+      {showExport && <ExportDialog onClose={() => setShowExport(false)} />}
     </div>
   )
 }

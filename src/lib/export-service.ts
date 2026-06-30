@@ -82,7 +82,7 @@ function getValue(entry: { value?: string } | undefined): string | undefined {
 function renderPageToHTML(
   page: { name: string; slug: string; blocks: Array<{ blockId: string; variantId: string; content: Record<string, any>; overrides: StyleOverride[]; position?: any }> },
   blockDefMap: Map<string, BlockDefinition>,
-  tokens: DesignTokens,
+  _tokens: DesignTokens,
   includeMetadata: boolean,
 ): string {
   const metaAttrs = includeMetadata ? ` data-bloxx-project="true" data-bloxx-version="1.0"` : ''
