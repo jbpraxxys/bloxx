@@ -109,6 +109,8 @@ window.addEventListener('message', (event: MessageEvent<ShellToCanvasMessage>) =
 
 // ─── Click Handler ──────────────────────────────────────
 canvasEl.addEventListener('click', (e) => {
+  // Prevent links from navigating — we want selection, not navigation
+  e.preventDefault()
   const blockEl = (e.target as HTMLElement).closest('.bloxx-block') as HTMLElement | null
   if (!blockEl) {
     // Clicked empty space — deselect
