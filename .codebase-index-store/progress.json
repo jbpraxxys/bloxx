@@ -1,12 +1,12 @@
 {
   "phase": "done",
-  "message": "Re-indexed package.json → 1 blocks",
-  "current": 156,
-  "total": 156,
+  "message": "Re-indexed src/blocks/curated.ts → 29 blocks",
+  "current": 197,
+  "total": 197,
   "percentage": 100,
-  "updatedAt": "2026-06-30T01:22:17.573Z",
+  "updatedAt": "2026-06-30T01:38:48.834Z",
   "files": 2,
-  "blocks": 156,
+  "blocks": 197,
   "dbPath": "/Users/jdbernardo/Sites/bloxx/.codebase-index-store",
-  "lastIndexed": "2026-06-30T01:22:17.573Z"
+  "lastIndexed": "2026-06-30T01:38:48.834Z"
 }
