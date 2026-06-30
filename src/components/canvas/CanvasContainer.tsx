@@ -96,6 +96,17 @@ const _CanvasContainer: React.FC = () => {
           }
           break
         }
+
+        case 'REMOVE_BLOCK': {
+          const { blockIndex } = msg as any
+          const pageId = activePage?.id
+          const block = activePage?.blocks[blockIndex]
+          if (pageId && block) {
+            useProjectStore.getState().removeBlock(pageId, block.id)
+            clearSelection()
+          }
+          break
+        }
       }
     }
 

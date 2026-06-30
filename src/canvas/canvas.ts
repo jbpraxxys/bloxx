@@ -48,6 +48,7 @@ function buildPageHtml(page: any, blockDefs: Record<string, any>): string {
 
       return `<div class="bloxx-block${instance.position ? ' bloxx-block--freeform' : ''}" data-block-index="${index}" data-block-id="${instance.blockId}" style="${instance.position ? `position:absolute;left:${instance.position.x}px;top:${instance.position.y}px;width:${instance.position.width}px;height:${instance.position.height}px;` : ''}">
         <span class="bloxx-block__label">${def.name} (${variant.name})</span>
+        <button class="bloxx-block__remove" data-block-index="${index}" title="Remove block">✕</button>
         ${html}
         ${instance.position ? '<div class="bloxx-block__resize-handle"></div>' : ''}
       </div>`
@@ -159,6 +160,25 @@ canvasEl.addEventListener('click', (e) => {
     blockIndex: index,
     elementRole: role,
     boundingRect,
+  }, '*')
+})
+
+// ─── Remove button handler ─────────────────────────────
+canvasEl.addEventListener('click', (e) => {
+  const removeBtn = (e.target as HTMLElement).closest('.bloxx-block__remove') as HTMLElement | null
+  if (!removeBtn) return
+
+  const blockIndex = parseInt(removeBtn.dataset.blockIndex ?? '-1', 10)
+  if (blockIndex < 0) return
+
+  const blockEl = removeBtn.closest('.bloxx-block') as HTMLElement | null
+  if (blockEl) {
+    blockEl.remove()
+  }
+
+  window.parent.postMessage({
+    type: 'REMOVE_BLOCK',
+    blockIndex,
   }, '*')
 })
 

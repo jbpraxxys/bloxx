@@ -1,12 +1,12 @@
 {
   "phase": "done",
-  "message": "Re-indexed src/components/shell/BlockLibrary.tsx → 7 blocks",
-  "current": 672,
-  "total": 672,
+  "message": "Re-indexed src/types/index.ts → 13 blocks",
+  "current": 680,
+  "total": 680,
   "percentage": 100,
-  "updatedAt": "2026-06-30T05:26:22.810Z",
+  "updatedAt": "2026-06-30T05:29:41.143Z",
   "files": 2,
-  "blocks": 672,
+  "blocks": 680,
   "dbPath": "/Users/jdbernardo/Sites/bloxx/.codebase-index-store",
-  "lastIndexed": "2026-06-30T05:26:22.810Z"
+  "lastIndexed": "2026-06-30T05:29:41.143Z"
 }
