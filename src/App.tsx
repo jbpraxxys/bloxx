@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react'
 import { Toolbar } from './components/shell/Toolbar'
 import { CanvasContainer } from './components/canvas/CanvasContainer'
 import { BlockLibrary } from './components/shell/BlockLibrary'
+import { DesignSystemPanel } from './components/shell/DesignSystemPanel'
 import { useProjectStore } from './store/projectStore'
 
 const App: React.FC = () => {
   const { projects, loadProjects, createProject, project, loadProject } = useProjectStore()
   const [showProjectDialog, setShowProjectDialog] = useState(false)
   const [projectName, setProjectName] = useState('')
+  const [activePanel, setActivePanel] = useState<'blocks' | 'design-system'>('blocks')
 
   useEffect(() => {
     loadProjects()
@@ -88,7 +90,39 @@ const App: React.FC = () => {
     <div className="bloxx-app">
       <Toolbar />
       <div className="bloxx-main">
-        <BlockLibrary />
+        <div style={{ display: 'flex', flexDirection: 'column', borderRight: '1px solid #e0e0e0' }}>
+          <button
+            onClick={() => setActivePanel('blocks')}
+            style={{
+              padding: '8px 16px',
+              border: 'none',
+              borderBottom: '1px solid #e0e0e0',
+              background: activePanel === 'blocks' ? '#e8f0fe' : 'transparent',
+              cursor: 'pointer',
+              fontWeight: activePanel === 'blocks' ? 600 : 400,
+              fontSize: '0.8rem',
+              color: activePanel === 'blocks' ? '#2563EB' : '#555',
+            }}
+          >
+            🧱 Blocks
+          </button>
+          <button
+            onClick={() => setActivePanel('design-system')}
+            style={{
+              padding: '8px 16px',
+              border: 'none',
+              borderBottom: '1px solid #e0e0e0',
+              background: activePanel === 'design-system' ? '#e8f0fe' : 'transparent',
+              cursor: 'pointer',
+              fontWeight: activePanel === 'design-system' ? 600 : 400,
+              fontSize: '0.8rem',
+              color: activePanel === 'design-system' ? '#2563EB' : '#555',
+            }}
+          >
+            🎨 Design
+          </button>
+        </div>
+        {activePanel === 'blocks' ? <BlockLibrary /> : <DesignSystemPanel />}
         <CanvasContainer />
       </div>
     </div>
