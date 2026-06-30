@@ -1,7 +1,9 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useState } from 'react'
 import { curatedBlocks } from '../../blocks/curated'
 import type { BlockDefinition } from '../../types'
 import { useCanvasStore } from '../../store/canvasStore'
+import { useProjectStore } from '../../store/projectStore'
+import { BlockEditor } from './BlockEditor'
 
 const CATEGORY_ORDER = ['navigation', 'sections', 'features', 'pricing', 'cta', 'content', 'footer'] as const
 
@@ -26,6 +28,9 @@ export const BlockLibrary: React.FC = () => {
     return map
   }, [])
 
+  const [showEditor, setShowEditor] = useState(false)
+  const { project } = useProjectStore()
+
   const handleDragStart = (e: React.DragEvent, block: BlockDefinition) => {
     e.dataTransfer.setData('text/plain', JSON.stringify({ blockId: block.id, variantId: block.defaultVariant }))
     e.dataTransfer.effectAllowed = 'copy'
@@ -36,6 +41,16 @@ export const BlockLibrary: React.FC = () => {
   return (
     <div className="bloxx-library">
       <div className="bloxx-library__header">🧱 Block Library</div>
+          <button
+            onClick={() => setShowEditor(true)}
+            style={{
+              margin: '8px', padding: '6px 12px', border: '1px dashed #2563EB',
+              borderRadius: 6, background: 'transparent', color: '#2563EB',
+              cursor: 'pointer', fontSize: '0.8rem', width: 'calc(100% - 16px)',
+            }}
+          >
+            + Create Custom Block
+          </button>
       <div className="bloxx-library__list">
         {CATEGORY_ORDER.map((cat) => {
           const blocks = grouped[cat]
@@ -57,7 +72,24 @@ export const BlockLibrary: React.FC = () => {
             </div>
           )
         })}
+          {project && project.customBlocks && project.customBlocks.length > 0 && (
+            <div className="bloxx-library__category">
+              <div className="bloxx-library__category-title">Custom</div>
+              {[...project.customBlocks].reverse().map((block) => (
+                <div
+                  key={block.id}
+                  className="bloxx-library__block"
+                  draggable
+                  onDragStart={(e) => handleDragStart(e, block)}
+                >
+                  <div className="bloxx-library__block-name">{block.name}</div>
+                  <div className="bloxx-library__block-desc">{block.description || 'Custom block'}</div>
+                </div>
+              ))}
+            </div>
+          )}
       </div>
+      {showEditor && <BlockEditor onClose={() => setShowEditor(false)} />}
     </div>
   )
 }

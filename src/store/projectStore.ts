@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import type { UndoAction, BloxxProject, BloxxPage, BlockInstance, StyleOverride } from '../types'
+import type { UndoAction, BloxxProject, BloxxPage, BlockInstance, StyleOverride, BlockDefinition } from '../types'
 import { projectService } from '../data/projectService'
 import { undoRedo } from '../lib/undo-redo'
 
@@ -26,6 +26,10 @@ interface ProjectState {
   updateBlockVariant: (pageId: string, blockInstanceId: string, variantId: string) => void
   updateBlockOverrides: (pageId: string, blockInstanceId: string, overrides: StyleOverride[]) => void
   updateBlockPosition: (pageId: string, blockInstanceId: string, position: { x: number; y: number; width: number; height: number }) => void
+
+  // Custom block operations
+  saveCustomBlock: (block: BlockDefinition) => void
+  deleteCustomBlock: (blockId: string) => void
 }
 
 export const useProjectStore = create<ProjectState>((set, get) => ({
@@ -231,6 +235,25 @@ export const useProjectStore = create<ProjectState>((set, get) => ({
     const block = page.blocks.find((b) => b.id === blockInstanceId)
     if (!block) return
     block.position = position
+    saveProject()
+  },
+
+  saveCustomBlock: (block) => {
+    const { project, saveProject } = get()
+    if (!project) return
+    const existing = project.customBlocks.findIndex((b) => b.id === block.id)
+    if (existing >= 0) {
+      project.customBlocks[existing] = block
+    } else {
+      project.customBlocks.push(block)
+    }
+    saveProject()
+  },
+
+  deleteCustomBlock: (blockId) => {
+    const { project, saveProject } = get()
+    if (!project) return
+    project.customBlocks = project.customBlocks.filter((b) => b.id !== blockId)
     saveProject()
   },
 }))
