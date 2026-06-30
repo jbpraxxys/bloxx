@@ -6,10 +6,13 @@ import { DesignSystemPanel } from './components/shell/DesignSystemPanel'
 import { useProjectStore } from './store/projectStore'
 import { AIChatWidget } from './components/shell/AIChatWidget'
 import { FloatingWidget } from './components/canvas/FloatingWidget'
+import { PageTabs } from './components/shell/PageTabs'
+import { useCanvasStore } from './store/canvasStore'
 import { importBloxxHTML, loadImportedProject } from './lib/import-service'
 
 const App: React.FC = () => {
   const { projects, loadProjects, createProject, project, loadProject } = useProjectStore()
+  const { currentPageId, setCurrentPage } = useCanvasStore()
   const [showProjectDialog, setShowProjectDialog] = useState(false)
   const [projectName, setProjectName] = useState('')
   const [activePanel, setActivePanel] = useState<'blocks' | 'design-system'>('blocks')
@@ -17,6 +20,12 @@ const App: React.FC = () => {
   useEffect(() => {
     loadProjects()
   }, [loadProjects])
+
+  useEffect(() => {
+    if (project && !currentPageId) {
+      setCurrentPage(project.pages[0]?.id)
+    }
+  }, [project, currentPageId, setCurrentPage])
 
   const handleCreateProject = async () => {
     if (!projectName.trim()) return
@@ -116,6 +125,7 @@ const App: React.FC = () => {
   return (
     <div className="bloxx-app">
       <Toolbar />
+      <PageTabs />
       <div className="bloxx-main">
         <div style={{ display: 'flex', flexDirection: 'column', borderRight: '1px solid #e0e0e0' }}>
           <button

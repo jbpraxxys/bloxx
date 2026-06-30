@@ -7,12 +7,14 @@ interface CanvasState {
   canvasMode: 'stack' | 'freeform'
   selectedBlockIndex: number | null
   selectedElementRole: string | null
+  currentPageId: string | null
 
   setViewport: (device: ViewportDevice) => void
   setEditorMode: (mode: EditorMode) => void
   setCanvasMode: (mode: 'stack' | 'freeform') => void
   selectElement: (blockIndex: number | null, role?: string) => void
   clearSelection: () => void
+  setCurrentPage: (pageId: string) => void
 }
 
 export const useCanvasStore = create<CanvasState>((set) => ({
@@ -21,6 +23,7 @@ export const useCanvasStore = create<CanvasState>((set) => ({
   canvasMode: 'stack',
   selectedBlockIndex: null,
   selectedElementRole: null,
+  currentPageId: null,
 
   setViewport: (device: ViewportDevice) => set({ viewport: device }),
   setEditorMode: (mode: EditorMode) => set({ editorMode: mode }),
@@ -29,4 +32,5 @@ export const useCanvasStore = create<CanvasState>((set) => ({
     set({ selectedBlockIndex: blockIndex, selectedElementRole: role ?? null }),
   clearSelection: () =>
     set({ selectedBlockIndex: null, selectedElementRole: null }),
+  setCurrentPage: (pageId) => set({ currentPageId: pageId }),
 }))

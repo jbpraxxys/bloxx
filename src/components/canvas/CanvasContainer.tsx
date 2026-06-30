@@ -11,18 +11,16 @@ const CANVAS_IFRAME_SRC = '/src/canvas/index.html'
 export const CanvasContainer: React.FC = () => {
   const iframeRef = useRef<HTMLIFrameElement>(null)
   const { project } = useProjectStore()
-  const { viewport, editorMode, selectedBlockIndex, selectElement, clearSelection } = useCanvasStore()
+  const { viewport, editorMode, selectedBlockIndex, selectElement, clearSelection, currentPageId } = useCanvasStore()
   const isDirty = useDesignTokensStore((s) => s.isDirty)
+  const activePage = project?.pages.find((p) => p.id === currentPageId) ?? project?.pages[0]
 
   const viewportWidth = VIEWPORT_CONFIG[viewport].width
 
   // ─── Send RENDER to iframe ───────────────────────────
   const sendRender = useCallback(() => {
     const iframe = iframeRef.current
-    if (!iframe?.contentWindow || !project) return
-
-    const activePage = project.pages[0]
-    if (!activePage) return
+    if (!iframe?.contentWindow || !project || !activePage) return
 
     iframe.contentWindow.postMessage(
       {
@@ -32,7 +30,7 @@ export const CanvasContainer: React.FC = () => {
       },
       '*',
     )
-  }, [project])
+  }, [project, activePage])
 
   // ─── Listen for messages from iframe ─────────────────
   useEffect(() => {
@@ -61,7 +59,7 @@ export const CanvasContainer: React.FC = () => {
 
         case 'BLOCK_REORDERED': {
           const { fromIndex, toIndex } = msg
-          const pageId = project?.pages[0]?.id
+          const pageId = activePage?.id
           if (pageId) {
             useProjectStore.getState().moveBlock(pageId, fromIndex, toIndex)
             setTimeout(sendRender, 0)
@@ -71,10 +69,9 @@ export const CanvasContainer: React.FC = () => {
 
         case 'CONTENT_EDITED': {
           const { blockIndex, slotName, value } = msg as any
-          const currentProject = project
-          if (currentProject) {
-            const pageId = currentProject.pages[0]?.id
-            const block = currentProject.pages[0]?.blocks[blockIndex]
+          if (activePage) {
+            const pageId = activePage.id
+            const block = activePage.blocks[blockIndex]
             if (pageId && block) {
               useProjectStore.getState().updateBlockContent(pageId, block.id, { [slotName]: value })
             }
@@ -84,9 +81,8 @@ export const CanvasContainer: React.FC = () => {
 
         case 'BLOCK_POSITION_UPDATED': {
           const { blockIndex, position } = msg as any
-          const currentProject = project
-          const pageId = currentProject?.pages[0]?.id
-          const block = currentProject?.pages[0]?.blocks[blockIndex]
+          const pageId = activePage?.id
+          const block = activePage?.blocks[blockIndex]
           if (pageId && block) {
             useProjectStore.getState().updateBlockPosition(pageId, block.id, position)
           }
@@ -97,7 +93,7 @@ export const CanvasContainer: React.FC = () => {
 
     window.addEventListener('message', handleMessage)
     return () => window.removeEventListener('message', handleMessage)
-  }, [project, selectElement, clearSelection, sendRender])
+  }, [project, selectElement, clearSelection, sendRender, activePage])
 
   // ─── Re-render when project state changes ────────────
   useEffect(() => {
@@ -148,7 +144,7 @@ export const CanvasContainer: React.FC = () => {
     if (!data) return
     try {
       const { blockId, variantId } = JSON.parse(data)
-      const pageId = project?.pages[0]?.id
+      const pageId = activePage?.id
       if (pageId) {
         useProjectStore.getState().addBlock(pageId, blockId, variantId)
       }
