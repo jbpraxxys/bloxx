@@ -47,8 +47,14 @@ function buildPageHtml(page: any, blockDefs: Record<string, any>): string {
       }
 
       return `<div class="bloxx-block${instance.position ? ' bloxx-block--freeform' : ''}" data-block-index="${index}" data-block-id="${instance.blockId}" style="${instance.position ? `position:absolute;left:${instance.position.x}px;top:${instance.position.y}px;width:${instance.position.width}px;height:${instance.position.height}px;` : ''}">
-        <span class="bloxx-block__label">${def.name} (${variant.name})</span>
-        <button class="bloxx-block__remove" data-block-index="${index}" title="Remove block">✕</button>
+        <div class="bloxx-block__toolbar">
+          <span class="bloxx-block__toolbar-name">${def.name}</span>
+          <div class="bloxx-block__toolbar-actions">
+            <button class="bloxx-block__toolbar-btn" data-action="move-up" data-block-index="${index}" title="Move up">↑</button>
+            <button class="bloxx-block__toolbar-btn" data-action="move-down" data-block-index="${index}" title="Move down">↓</button>
+            <button class="bloxx-block__toolbar-btn bloxx-block__toolbar-btn--danger" data-action="remove" data-block-index="${index}" title="Remove block">🗑 Remove</button>
+          </div>
+        </div>
         ${html}
         ${instance.position ? '<div class="bloxx-block__resize-handle"></div>' : ''}
       </div>`
@@ -109,6 +115,16 @@ window.addEventListener('message', (event: MessageEvent<ShellToCanvasMessage>) =
 })
 
 // ─── Click Handler ──────────────────────────────────────
+// Debug: log ALL clicks at document level first
+document.addEventListener('click', (e) => {
+  console.log('IFRAME CLICK:', e.target.tagName, e.target.className, 'trusted:', e.isTrusted)
+  const flash = document.getElementById('click-debug')
+  if (flash) {
+    flash.style.opacity = '1'
+    setTimeout(() => { flash.style.opacity = '0' }, 300)
+  }
+}, true)
+
 canvasEl.addEventListener('click', (e) => {
   // Prevent links from navigating — we want selection, not navigation
   e.preventDefault()
@@ -163,23 +179,24 @@ canvasEl.addEventListener('click', (e) => {
   }, '*')
 })
 
-// ─── Remove button handler ─────────────────────────────
+// ─── Toolbar button handler ────────────────────────────
 canvasEl.addEventListener('click', (e) => {
-  const removeBtn = (e.target as HTMLElement).closest('.bloxx-block__remove') as HTMLElement | null
-  if (!removeBtn) return
+  const toolbarBtn = (e.target as HTMLElement).closest('.bloxx-block__toolbar-btn') as HTMLElement | null
+  if (!toolbarBtn) return
 
-  const blockIndex = parseInt(removeBtn.dataset.blockIndex ?? '-1', 10)
-  if (blockIndex < 0) return
+  const action = toolbarBtn.dataset.action
+  const blockIndex = parseInt(toolbarBtn.dataset.blockIndex ?? '-1', 10)
+  if (blockIndex < 0 || !action) return
 
-  const blockEl = removeBtn.closest('.bloxx-block') as HTMLElement | null
-  if (blockEl) {
-    blockEl.remove()
+  if (action === 'remove') {
+    const blockEl = toolbarBtn.closest('.bloxx-block') as HTMLElement | null
+    if (blockEl) blockEl.remove()
+    window.parent.postMessage({ type: 'REMOVE_BLOCK', blockIndex }, '*')
+  } else if (action === 'move-up') {
+    window.parent.postMessage({ type: 'BLOCK_REORDERED', fromIndex: blockIndex, toIndex: blockIndex - 1 }, '*')
+  } else if (action === 'move-down') {
+    window.parent.postMessage({ type: 'BLOCK_REORDERED', fromIndex: blockIndex, toIndex: blockIndex + 1 }, '*')
   }
-
-  window.parent.postMessage({
-    type: 'REMOVE_BLOCK',
-    blockIndex,
-  }, '*')
 })
 
 // ─── Double-click to edit content ──────────────────────
