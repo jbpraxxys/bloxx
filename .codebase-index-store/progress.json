@@ -1,12 +1,12 @@
 {
   "phase": "done",
-  "message": "Re-indexed src/lib/ai-provider.ts → 4 blocks",
-  "current": 307,
-  "total": 307,
+  "message": "Re-indexed src/store/aiStore.ts → 3 blocks",
+  "current": 310,
+  "total": 310,
   "percentage": 100,
-  "updatedAt": "2026-06-30T02:17:32.329Z",
+  "updatedAt": "2026-06-30T02:19:18.855Z",
   "files": 2,
-  "blocks": 307,
+  "blocks": 310,
   "dbPath": "/Users/jdbernardo/Sites/bloxx/.codebase-index-store",
-  "lastIndexed": "2026-06-30T02:17:32.329Z"
+  "lastIndexed": "2026-06-30T02:19:18.855Z"
 }
