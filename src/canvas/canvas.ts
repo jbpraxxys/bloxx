@@ -199,6 +199,52 @@ canvasEl.addEventListener('dblclick', (e) => {
   document.addEventListener('keydown', handleEscape)
 })
 
+// ─── Image click → upload ────────────────────────────
+// When clicking an image slot, open a file picker instead of making it contentEditable
+canvasEl.addEventListener('click', (e) => {
+  const img = (e.target as HTMLElement).closest('[data-bloxx-slot][data-bloxx-type="image"]') as HTMLImageElement | null
+  if (!img) return
+
+  // Only trigger for actual image elements with data-bloxx-type="image"
+  const input = document.createElement('input')
+  input.type = 'file'
+  input.accept = 'image/*'
+  input.style.display = 'none'
+  document.body.appendChild(input)
+
+  input.onchange = () => {
+    const file = input.files?.[0]
+    if (!file) {
+      document.body.removeChild(input)
+      return
+    }
+    const reader = new FileReader()
+    reader.onload = () => {
+      const dataUrl = reader.result as string
+      const blockEl = img.closest('.bloxx-block') as HTMLElement
+      const blockIndex = parseInt(blockEl.dataset.blockIndex ?? '-1', 10)
+      const slotName = img.dataset.bloxxSlot
+
+      if (slotName) {
+        // Update the image src in the iframe
+        img.src = dataUrl
+
+        // Notify shell of the content change
+        window.parent.postMessage({
+          type: 'CONTENT_EDITED',
+          blockIndex,
+          slotName,
+          value: dataUrl,
+        }, '*')
+      }
+    }
+    reader.readAsDataURL(file)
+    document.body.removeChild(input)
+  }
+
+  input.click()
+})
+
 // ─── Free-form drag/resize ─────────────────────────────
 document.addEventListener('mousedown', (e) => {
   const handle = (e.target as HTMLElement).closest('.bloxx-block__resize-handle') as HTMLElement | null
